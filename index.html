@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cơ Học Cơ Sở 1 — Bài Tập Online</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="stylesheet" href="assets/css/app.css?v=1">
+<script src="config.js"></script>
+<script src="assets/js/engine.js?v=1"></script>
+</head>
+<body>
+<header class="hdr"><div class="hdr-in">
+  <i class="ti ti-atom-2" style="font-size:26px"></i>
+  <div class="hdr-title"><h1 id="hdr-name">Cơ Học Cơ Sở 1 — Tĩnh Học</h1><p id="hdr-sub">Bài tập online</p></div>
+</div></header>
+
+<main>
+  <div class="hero">
+    <h2><i class="ti ti-vector-triangle" style="vertical-align:-3px;margin-right:8px"></i>Bài Tập Online — Tĩnh Học</h2>
+    <p>Mỗi sinh viên nhận bộ số liệu riêng theo STT trong danh sách lớp · Chấm ngay từng ô · Nộp bài khi làm đủ số câu yêu cầu</p>
+    <div class="hero-meta">
+      <div class="hero-chip"><i class="ti ti-numbers"></i> Đề riêng theo STT</div>
+      <div class="hero-chip"><i class="ti ti-check"></i> Chấm tự động, dung sai ±1.5%</div>
+      <div class="hero-chip"><i class="ti ti-player-play"></i> A: hướng dẫn · B: công thức · C: tự giải</div>
+    </div>
+  </div>
+
+  <!-- ĐĂNG NHẬP -->
+  <div class="login-card" id="login-card">
+    <div class="login-hd"><span class="lbadge">BƯỚC 1</span><h2>Nhập thông tin sinh viên để bắt đầu</h2></div>
+    <div class="login-body">
+      <div class="warn-box">⚠️ <b>Lưu ý:</b> Bài làm <b>không lưu</b> khi đóng tab — hoàn thành và nộp trong một lần. Mỗi MSSV chỉ nộp <b>1 lần</b> mỗi bài.
+        <b>Số thứ tự (STT)</b> trong danh sách lớp sinh ra số liệu riêng của bạn — nhập đúng để có đề đúng.</div>
+      <div class="form-grid">
+        <div class="field span2"><label>Họ và tên</label><input type="text" id="f-name" placeholder="Nguyễn Văn An" autocomplete="name"></div>
+        <div class="field"><label>Mã số sinh viên (MSSV)</label><input type="text" id="f-mssv" placeholder="2351xxxxxx"></div>
+        <div class="field"><label>Số thứ tự trong lớp (1 – 200)</label><input type="number" id="f-stt" placeholder="VD: 12" min="1" max="200"></div>
+        <div class="field span2"><label>Lớp</label><select id="f-class"><option value="">— Chọn lớp của bạn —</option></select></div>
+      </div>
+      <div id="login-err" class="err-box hidden"></div>
+      <div><button class="btn btn-primary" onclick="APP.start()"><i class="ti ti-player-play"></i> Bắt đầu làm bài</button></div>
+    </div>
+  </div>
+
+  <!-- ĐÃ ĐĂNG NHẬP -->
+  <div class="sv-bar hidden" id="user-bar">
+    <div class="user-av" id="sv-av">?</div>
+    <div><div class="sv-name" id="sv-name">–</div><div class="sv-sub" id="sv-meta">–</div></div>
+    <button class="btn btn-sm" style="margin-left:auto;background:var(--Plt);color:var(--P)" onclick="APP.exit()"><i class="ti ti-logout"></i> Đổi sinh viên</button>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-top"><span><i class="ti ti-chart-bar" style="vertical-align:-2px;margin-right:5px"></i>Tiến độ tổng (số câu đúng)</span><span id="total-text">Chưa có dữ liệu</span></div>
+    <div class="prog-track"><div class="prog-fill" id="total-fill" style="width:0%"></div></div>
+  </div>
+
+  <div class="divider"><i class="ti ti-books"></i> CHCS 1 — Tĩnh học</div>
+  <div class="grid" id="ch-grid"></div>
+</main>
+
+<footer id="footer">Cơ Học Cơ Sở 1 — Tĩnh Học · Bài tập online</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================================================================
+   TRANG CHỦ — đăng nhập SV (sessionStorage 'chcs_sv') + danh sách chương
+   Trạng thái mở/khoá lấy từ CHAPTER_SCHEDULE trong config.js
+   keys: các khoá localStorage tiến độ của từng bài trong chương
+   ================================================================ */
+var CHAPTERS = [
+  { id: 'c1', num: 'C.1', title: 'Mở Đầu, Khái Niệm & Hệ Tiên Đề', topics: 'Lực, hệ lực, hợp lực · 5 tiên đề tĩnh học · Liên kết & phản lực liên kết', bai: 2, href: 'chuong-01/index_C1.html', keys: ['chcs_prog_c1_11', 'chcs_prog_c1_12'] },
+  { id: 'c2', num: 'C.2', title: 'Hệ Lực Phẳng & Cân Bằng Vật Rắn Phẳng', topics: 'Thu gọn hệ lực · Ngẫu lực · Dạng tối giản · Phản lực liên kết · Lựa chọn liên kết · Vật lật', bai: 4, href: 'chuong-02/index_C2.html', keys: ['chcs_prog_c2_21', 'chcs_prog_c2_22', 'chcs_prog_c2_23', 'chcs_prog_c2_24'] },
+  { id: 'c3', num: 'C.3', title: 'Hệ Lực Không Gian & Cân Bằng Vật Rắn Không Gian', topics: 'Mômen đối với trục · Thu gọn hệ lực không gian · 6 phương trình cân bằng', bai: 0, href: '#', keys: [] },
+  { id: 'c4', num: 'C.4', title: 'Tính Toán Một Số Kết Cấu Tĩnh Định', topics: 'Hệ nhiều vật · Dàn phẳng (tách mắt, mặt cắt) · Khung ba khớp', bai: 0, href: '#', keys: [] },
+  { id: 'c5', num: 'C.5', title: 'Ma Sát', topics: 'Ma sát trượt · Ma sát lăn · Góc ma sát · Cân bằng có ma sát', bai: 0, href: '#', keys: [] },
+  { id: 'c6', num: 'C.6', title: 'Trọng Tâm Vật Rắn', topics: 'Tâm hệ lực song song · Trọng tâm hình phẳng ghép · Phương pháp khoét lỗ', bai: 0, href: '#', keys: [] }
+];
+
+var APP = {
+  student: null,
+  init: function () {
+    var ci = window.COURSE_INFO || {};
+    if (ci.name) { document.getElementById('hdr-name').textContent = ci.name; document.title = ci.name + ' — Bài Tập Online'; }
+    document.getElementById('hdr-sub').textContent = [ci.teacher, ci.dept].filter(Boolean).join(' · ') || 'Bài tập online';
+    document.getElementById('footer').textContent = (ci.name || 'Cơ Học Cơ Sở 1') + ' — Bài tập online · ' + [ci.teacher, ci.dept].filter(Boolean).join(' · ');
+    var sel = document.getElementById('f-class');
+    (window.CLASS_LIST || []).forEach(function (c) { var o = document.createElement('option'); o.value = c.id; o.textContent = c.name || c.id; sel.appendChild(o); });
+    var sv = getSV();
+    if (sv && sv.name) this.setStudent(sv);
+    this.render();
+  },
+  setStudent: function (sv) {
+    this.student = sv;
+    document.getElementById('login-card').classList.add('hidden');
+    document.getElementById('user-bar').classList.remove('hidden');
+    document.getElementById('sv-av').textContent = sv.name.trim().split(/\s+/).pop().charAt(0).toUpperCase();
+    document.getElementById('sv-name').textContent = sv.name;
+    document.getElementById('sv-meta').textContent = 'MSSV: ' + sv.mssv + ' · STT: ' + sv.stt + ' · Lớp ' + sv.classId;
+  },
+  start: function () {
+    var name = document.getElementById('f-name').value.trim(), mssv = document.getElementById('f-mssv').value.trim();
+    var stt = parseInt(document.getElementById('f-stt').value, 10), cls = document.getElementById('f-class').value, err = document.getElementById('login-err');
+    var msg = !name ? 'Vui lòng nhập họ tên.' : !mssv ? 'Vui lòng nhập MSSV.' : !(stt >= 1 && stt <= 200) ? 'Số thứ tự phải từ 1 đến 200.' : !cls ? 'Vui lòng chọn lớp.' : '';
+    if (msg) { err.textContent = '⚠️ ' + msg; err.classList.remove('hidden'); return; }
+    err.classList.add('hidden');
+    var sv = { name: name, mssv: mssv, stt: stt, classId: cls };
+    try { sessionStorage.setItem(SV_KEY, JSON.stringify(sv)); } catch (e) {}
+    this.setStudent(sv);
+    this.render();
+    toast('✅ Xin chào ' + name + '! Chọn chương đang mở để làm bài.');
+  },
+  exit: function () {
+    if (!confirm('Đổi sinh viên? Bài đang làm dở (chưa nộp) sẽ không được lưu.')) return;
+    try { sessionStorage.removeItem(SV_KEY); } catch (e) {}
+    this.student = null;
+    document.getElementById('login-card').classList.remove('hidden');
+    document.getElementById('user-bar').classList.add('hidden');
+    this.render();
+  },
+  prog: function (ch) {
+    var d = 0, t = 0;
+    ch.keys.forEach(function (k) { try { var p = JSON.parse(localStorage.getItem(k) || 'null'); if (p && p.total) { d += p.done; t += p.total; } } catch (e) {} });
+    return { done: d, total: t };
+  },
+  render: function () {
+    var self = this, h = '', D = 0, T = 0;
+    CHAPTERS.forEach(function (ch) {
+      var st = ch.bai ? chapterStatus(ch.id) : 'locked', p = self.prog(ch), pct = p.total ? Math.round(p.done / p.total * 100) : 0;
+      D += p.done; T += p.total;
+      var badge = st === 'open' ? (p.total ? '<span class="badge ' + (pct === 100 ? 'done' : 'open') + '">' + (pct === 100 ? '✓ Hoàn thành' : pct + '% đúng') + '</span>' : '<span class="badge open">✅ Đang mở</span>')
+        : st === 'soon' ? '<span class="badge soon">🕐 Sắp mở</span>' : st === 'closed' ? '<span class="badge locked">⛔ Đã đóng</span>' : '<span class="badge locked">🔒 Chưa mở</span>';
+      h += '<a class="dc' + (st === 'open' ? '' : ' locked') + '" href="' + ch.href + '" data-st="' + st + '" onclick="return APP.go(event,this)">'
+        + '<div class="dc-hd"><div class="dc-icon dc-num">' + ch.num + '</div><div><h3>' + ch.title + '</h3><p>' + ch.topics + '</p></div></div>'
+        + '<div class="dc-foot"><span class="dc-status">' + (ch.bai ? ch.bai + ' bài tập' : 'Đang biên soạn') + '</span>' + badge + '</div></a>';
+    });
+    document.getElementById('ch-grid').innerHTML = h;
+    if (T) {
+      document.getElementById('total-text').textContent = D + ' / ' + T + ' câu (' + Math.round(D / T * 100) + '%)';
+      document.getElementById('total-fill').style.width = Math.round(D / T * 100) + '%';
+    }
+  },
+  go: function (e, a) {
+    var st = a.getAttribute('data-st');
+    if (st !== 'open') { toast(st === 'soon' ? '🕐 Chưa đến giờ mở chương này.' : st === 'closed' ? '⛔ Chương đã đóng.' : '🔒 Chương chưa được mở.'); return false; }
+    if (!this.student) {
+      toast('⚠️ Hãy nhập thông tin sinh viên trước!');
+      document.getElementById('f-name').focus();
+      return false;
+    }
+    return true;
+  }
+};
+window.addEventListener('load', function () { APP.init(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2.3 — Phản Lực Liên Kết Vật Rắn Phẳng</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="stylesheet" href="../assets/css/app.css?v=1">
+<script src="../config.js"></script>
+<script src="../assets/js/engine.js?v=1"></script>
+<script src="../assets/js/draw.js?v=1"></script>
+</head>
+<body>
+<header class="hdr"><div class="hdr-in">
+  <a href="index_C2.html" class="back-btn"><i class="ti ti-arrow-left"></i> Chương 2</a>
+  <div class="hdr-title"><h1>2.3 — Tính Phản Lực Liên Kết (Bài toán 2)</h1><p>ΣF<sub>kx</sub> = 0 · ΣF<sub>ky</sub> = 0 · Σm<sub>A</sub>(F<sub>k</sub>) = 0</p></div>
+  <div class="hdr-right"><div class="hdr-prog" id="hdr-prog">0 / 0</div><div class="sv-badge" id="sv-badge">–</div></div>
+</div></header>
+
+<main>
+  <div class="preview-bar hidden" id="preview-bar">👀 Chế độ xem thử — chưa đăng nhập nên không nộp được bài. Về <a href="../index.html">Trang chủ</a> để nhập thông tin.</div>
+  <div class="prog-wrap">
+    <div class="prog-top"><span><i class="ti ti-target" style="vertical-align:-2px;margin-right:4px"></i>Tiến độ 2.3 — Phản lực liên kết</span><span id="prog-text">–</span></div>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+  <div class="sv-infobar">
+    <i class="ti ti-id-badge-2" style="font-size:20px;opacity:.8"></i>
+    <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700" id="sv-display">Đang tải...</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.7)">Số liệu sinh riêng theo STT · Bỏ qua trọng lượng và chiều cao dầm (trừ khi đề cho)</div></div>
+    <div class="sv-chip" id="sv-chip">–</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd"><i class="ti ti-math-function"></i><div><h2>Cách giải bài toán tìm phản lực liên kết</h2></div><span class="cbadge">CÔNG THỨC</span></div>
+    <div class="card-body">
+      <div class="two-col">
+        <div class="fml-box">
+          <div class="ftitle">3 bước giải</div>
+          <div class="frow"><em>B1.</em> Sơ đồ vật tự do: chọn hệ trục, giải phóng liên kết → phản lực</div>
+          <div class="frow"><em>B2.</em> Thay tải phân bố bằng hợp lực Q; lập 3 PTCB</div>
+          <div class="frow"><em>B3.</em> Giải, kết luận chiều: kết quả âm → ngược chiều đã chọn</div>
+        </div>
+        <div class="fml-box">
+          <div class="ftitle">Phương trình cân bằng (dạng 1)</div>
+          <div class="frow">ΣF<sub>kx</sub> = 0 · ΣF<sub>ky</sub> = 0 · Σm<sub>A</sub>(F<sub>k</sub>) = 0</div>
+          <div class="frow">Lực nghiêng β so với phương đứng: F<sub>x</sub> = ±F·sinβ, F<sub>y</sub> = −F·cosβ</div>
+          <div class="frow">Phân bố đều: Q = q·L · Tam giác: Q = ½q<sub>max</sub>·L (cách đầu q<sub>max</sub> L/3)</div>
+        </div>
+      </div>
+      <div class="note-box">💡 <b>Quy ước chiều dương giả thiết của phản lực:</b> X<sub>A</sub> hướng sang phải (→), Y<sub>A</sub>, N<sub>B</sub> hướng lên (↑), M<sub>A</sub> ngược chiều kim đồng hồ (↺). Lực trong thanh S: dương khi thanh <b>chịu kéo</b>. Nhập giá trị <b>đại số</b> — âm nếu phản lực thực ngược chiều giả thiết.</div>
+    </div>
+  </div>
+
+  <div id="content"></div>
+</main>
+
+<div class="sticky-nav">
+  <span>2.3 · Phản lực liên kết</span>
+  <div class="nav-btns">
+    <span id="nav-prog">0/0</span>
+    <button class="btn btn-sm btn-ghost" onclick="scrollNext()">▼ Câu chưa làm</button>
+    <button class="btn btn-sm btn-ghost" id="btn-nop" onclick="submitResult()">🔒 Nộp bài</button>
+    <a href="2.4_LUA_CHON_LK.html" class="btn btn-sm btn-ghost">Bài tiếp ›</a>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   2.3 — TÍNH PHẢN LỰC LIÊN KẾT CỦA VẬT RẮN PHẲNG CÂN BẰNG TĨNH ĐỊNH
+   Mô hình: vật = dầm/khung phẳng, toạ độ (x, y) theo mét, A là gốc toạ độ.
+   Tải trọng (loads):
+     {k:'P', x, y, F, beta, side, name}  lực tập trung, nghiêng beta (độ) so với
+                                          phương đứng, side=+1 lệch sang phải, −1 sang trái
+                                          (hoặc {k:'P', ang} cho phương bất kỳ)
+     {k:'q', x1, x2, q, name}             phân bố đều trên dầm ngang, hướng xuống
+     {k:'t', x1, x2, q, maxR, name}       phân bố tam giác, cực đại ở đầu phải nếu maxR
+     {k:'M', x, y, M, name}               ngẫu lực, M > 0 ngược chiều kim đồng hồ
+   Ẩn phản lực (unk): {name, x, y, dx, dy} (lực đơn vị) hoặc {name, m:1} (mômen)
+   solve(): giải hệ 3 PTCB  ΣFx = 0, ΣFy = 0, ΣM_A = 0 bằng khử Gauss.
+   ================================================================ */
+window.__DATA = [];
+
+function loadForces(ld) {
+  if (ld.k === 'P') {
+    var ang = ld.ang != null ? ld.ang : 270 + (ld.side || 1) * (ld.beta || 0);
+    return [{ x: ld.x, y: ld.y || 0, Fx: ld.F * cosd(ang), Fy: ld.F * sind(ang) }];
+  }
+  if (ld.k === 'q') { var Q = ld.q * (ld.x2 - ld.x1); return [{ x: (ld.x1 + ld.x2) / 2, y: ld.y || 0, Fx: 0, Fy: -Q, Q: Q }]; }
+  if (ld.k === 't') { var L = ld.x2 - ld.x1, Qt = ld.q * L / 2; return [{ x: ld.x1 + (ld.maxR ? 2 : 1) * L / 3, y: ld.y || 0, Fx: 0, Fy: -Qt, Q: Qt }]; }
+  return [];
+}
+function solve(loads, unk) {
+  var A = [[], [], []], b = [0, 0, 0];
+  unk.forEach(function (u, j) {
+    if (u.m) { A[0][j] = 0; A[1][j] = 0; A[2][j] = 1; }
+    else { A[0][j] = u.dx; A[1][j] = u.dy; A[2][j] = u.x * u.dy - u.y * u.dx; }
+  });
+  loads.forEach(function (ld) {
+    if (ld.k === 'M') { b[2] -= ld.M; return; }
+    loadForces(ld).forEach(function (f) { b[0] -= f.Fx; b[1] -= f.Fy; b[2] -= f.x * f.Fy - f.y * f.Fx; });
+  });
+  /* Khử Gauss có chọn trụ */
+  var n = 3, M = A.map(function (r, i) { return r.concat([b[i]]); });
+  for (var c = 0; c < n; c++) {
+    var p = c; for (var r = c + 1; r < n; r++) if (Math.abs(M[r][c]) > Math.abs(M[p][c])) p = r;
+    var t = M[c]; M[c] = M[p]; M[p] = t;
+    if (Math.abs(M[c][c]) < 1e-12) return null;
+    for (var r2 = 0; r2 < n; r2++) if (r2 !== c) { var k = M[r2][c] / M[c][c]; for (var cc = c; cc <= n; cc++) M[r2][cc] -= k * M[c][cc]; }
+  }
+  var out = {};
+  unk.forEach(function (u, j) { out[u.name] = M[j][n] / M[j][j]; });
+  return out;
+}
+
+/* ── SINH TẢI TRỌNG ─────────────────────────────────────────────── */
+function genP(rng, x, name, incl) {
+  return { k: 'P', x: x, F: rint(rng, 2, 16), beta: incl ? pick(rng, [30, 45, 60]) : 0, side: pick(rng, [1, -1]), name: name || 'F' };
+}
+function genQ(rng, x1, x2, name) { return { k: 'q', x1: x1, x2: x2, q: rint(rng, 1, 6), name: name || 'q' }; }
+function genT(rng, x1, x2, name) { return { k: 't', x1: x1, x2: x2, q: rint(rng, 2, 9), maxR: rng() < 0.5, name: name || 'q_max' }; }
+function genM(rng, x, name) { return { k: 'M', x: x, M: rint(rng, 2, 12) * pick(rng, [1, -1]), name: name || 'M' }; }
+
+/* Dầm: sup = 'SS' (gối cố định A tại xA, gối di động B tại xB) | 'CANT' (ngàm A tại x = 0) */
+function beamUnk(b) {
+  if (b.sup === 'CANT') return [{ name: 'XA', x: 0, y: 0, dx: 1, dy: 0 }, { name: 'YA', x: 0, y: 0, dx: 0, dy: 1 }, { name: 'MA', m: 1 }];
+  return [{ name: 'XA', x: b.xA, y: 0, dx: 1, dy: 0 }, { name: 'YA', x: b.xA, y: 0, dx: 0, dy: 1 }, { name: 'NB', x: b.xB, y: 0, dx: 0, dy: 1 }];
+}
+
+/* ── MÔ TẢ ĐỀ ───────────────────────────────────────────────────── */
+function ldDesc(ld) {
+  if (ld.k === 'P') return ld.name + ' = <b>' + ld.F + ' kN</b>' + (ld.beta ? ' (nghiêng ' + ld.beta + '° so với phương đứng)' : '');
+  if (ld.k === 'q') return ld.name + ' = <b>' + ld.q + ' kN/m</b>';
+  if (ld.k === 't') return ld.name.replace('_max', '<sub>max</sub>') + ' = <b>' + ld.q + ' kN/m</b>';
+  if (ld.k === 'M') return ld.name + ' = <b>' + Math.abs(ld.M) + ' kNm</b>';
+  if (ld.k === 'W') return '';
+}
+/* Chuỗi PTCB có thay số cho dầm (gợi ý nhóm A); Q ghi dạng ký hiệu Q1, Q2... */
+function beamEqs(b) {
+  var fx = [], fy = [], mA = [], xA = b.sup === 'CANT' ? 0 : b.xA, qi = 0;
+  b.loads.forEach(function (ld) {
+    if (ld.k === 'M') { mA.push((ld.M > 0 ? '+ ' : '− ') + Math.abs(ld.M)); return; }
+    var arm = r3(loadForces(ld)[0].x - xA);
+    if (ld.k === 'P') {
+      var sy = ld.beta ? ld.F + '·cos' + ld.beta + '°' : String(ld.F);
+      if (ld.beta) fx.push((ld.side > 0 ? '+ ' : '− ') + ld.F + '·sin' + ld.beta + '°');
+      fy.push('− ' + sy);
+      if (arm !== 0) mA.push((arm > 0 ? '− ' : '+ ') + sy + '·' + fmt(Math.abs(arm)));
+    } else {
+      qi++; var Qn = 'Q<sub>' + qi + '</sub>';
+      fy.push('− ' + Qn);
+      if (arm !== 0) mA.push((arm > 0 ? '− ' : '+ ') + Qn + '·' + fmt(Math.abs(arm)));
+    }
+  });
+  var head = b.sup === 'CANT' ? ['X<sub>A</sub>', 'Y<sub>A</sub>', 'M<sub>A</sub>'] : ['X<sub>A</sub>', 'Y<sub>A</sub> + N<sub>B</sub>', 'N<sub>B</sub>·' + fmt(b.xB - xA)];
+  return 'ΣF<sub>kx</sub> = ' + head[0] + ' ' + fx.join(' ') + ' = 0<br>'
+    + 'ΣF<sub>ky</sub> = ' + head[1] + ' ' + fy.join(' ') + ' = 0<br>'
+    + 'Σm<sub>A</sub> = ' + head[2] + ' ' + mA.join(' ') + ' = 0';
+}
+function qList(b) {
+  var out = [], qi = 0;
+  b.loads.forEach(function (ld) { if (ld.k === 'q' || ld.k === 't') { qi++; out.push({ n: qi, Q: loadForces(ld)[0].Q, x: loadForces(ld)[0].x, ld: ld }); } });
+  return out;
+}
+
+/* ── HÌNH VẼ DẦM ────────────────────────────────────────────────── */
+function beamFig(b, o) {
+  o = o || {};
+  var W = 500, sc = Math.min(52, 360 / b.L), bx = 75, by = 118, s = new Svg(W, o.h || 215);
+  function X(x) { return bx + x * sc; }
+  /* tải phân bố vẽ trước */
+  b.loads.forEach(function (ld) {
+    if (ld.k === 'q') s.distLoad(X(ld.x1), X(ld.x2), by - 4, 28, 28, ld.name + ' = ' + ld.q + ' kN/m');
+    if (ld.k === 't') s.distLoad(X(ld.x1), X(ld.x2), by - 4, ld.maxR ? 0 : 40, ld.maxR ? 40 : 0, 'q_max = ' + ld.q + ' kN/m', { lx: ld.maxR ? X(ld.x2) - 30 : X(ld.x1) + 30 });
+  });
+  s.line(X(0), by, X(b.L), by, { c: COL.beam, w: 6 });
+  if (b.sup === 'CANT') s.fixed(X(0), by, 0);
+  else { s.pin(X(b.xA), by + 3, 0); s.roller(X(b.xB), by + 3, 0); }
+  b.loads.forEach(function (ld) {
+    if (ld.k === 'P') {
+      var ang = 270 + (ld.side || 1) * (ld.beta || 0);
+      s.force(X(ld.x), by - 4, ang, 58, ld.name + ' = ' + ld.F + ' kN', { size: 11.5 });
+      if (ld.beta) s.angle(X(ld.x), by - 4, 24, 90, ang - 180, ld.beta + '°', { gap: 10 });
+    }
+    if (ld.k === 'M') s.couple(X(ld.x), by, 15, ld.M > 0, ld.name + ' = ' + Math.abs(ld.M) + ' kNm', { lp: [X(ld.x), by + 30] });
+  });
+  /* tên điểm */
+  (b.pts || []).forEach(function (p) { s.text(X(p[1]) + (p[2] || 0), by + (p[3] || 26), p[0], { size: 12 }); });
+  /* kích thước */
+  var marks = [0, b.L];
+  if (b.sup !== 'CANT') marks.push(b.xA, b.xB);
+  b.loads.forEach(function (ld) { if (ld.k === 'P' || ld.k === 'M') marks.push(ld.x); if (ld.k === 'q' || ld.k === 't') marks.push(ld.x1, ld.x2); });
+  marks = marks.map(r3).filter(function (v, i, a) { return a.indexOf(v) === i; }).sort(function (p, q) { return p - q; });
+  s.dims(marks.map(X), by + 64, marks.slice(1).map(function (v, i) { return fmt(v - marks[i], 2) + 'm'; }));
+  return s.out();
+}
+
+/* Bộ câu hỏi cho dầm */
+function askBeam(id, b, r, withQ) {
+  var h = '';
+  if (withQ) qList(b).forEach(function (q) { h += makeQ(id + '-Q' + q.n, 'Hợp lực Q<sub>' + q.n + '</sub>', q.Q, 0.02, 'kN'); });
+  h += makeQ(id + '-XA', 'X<sub>A</sub>', r.XA, 0.02, 'kN') + makeQ(id + '-YA', 'Y<sub>A</sub>', r.YA, 0.02, 'kN');
+  h += b.sup === 'CANT' ? makeQ(id + '-MA', 'M<sub>A</sub>', r.MA, 0.02, 'kNm') : makeQ(id + '-NB', 'N<sub>B</sub>', r.NB, 0.02, 'kN');
+  return h;
+}
+function beamCard(id, grp, badge, title, b, stt, extra) {
+  var r = solve(b.loads, beamUnk(b));
+  window.__DATA.push({ id: id, beam: b, r: r });
+  var sup = b.sup === 'CANT' ? 'ngàm tại A' : 'gối cố định tại A và gối di động tại B';
+  var loads = b.loads.map(ldDesc).filter(Boolean).join(', ');
+  var o = { id: id, grp: grp, badge: badge, icon: grp === 'C' ? 'brain' : grp === 'B' ? 'pencil' : 'player-play', title: title,
+    prob: '🏗️ <b>Đề bài</b>' + (grp === 'A' ? ' (STT <b>' + stt + '</b>)' : '') + ': ' + (b.desc || ('Dầm AB được giữ cân bằng nằm ngang nhờ ' + sup + ', chịu ' + loads)) + '. Xác định phản lực liên kết.',
+    fig: beamFig(b), qs: askBeam(id, b, r, grp !== 'C') };
+  if (grp === 'A') {
+    o.fml = frow('Thay tải phân bố bằng hợp lực, rồi lập 3 phương trình cân bằng:') + frow(beamEqs(b));
+    o.fmlTitle = 'Phương trình cân bằng';
+    o.hint = qList(b).map(function (q) { return 'Q<sub>' + q.n + '</sub> = ' + (q.ld.k === 'q' ? q.ld.q + '·' + fmt(q.ld.x2 - q.ld.x1) : '½·' + q.ld.q + '·' + fmt(q.ld.x2 - q.ld.x1)) + ' = ? (cách A ' + fmt(q.x) + ' m)'; }).join('<br>') || 'Giải hệ 3 phương trình trên';
+    if (extra) o.hint += '<br>' + extra;
+  } else if (grp === 'B') {
+    o.fml = frow('ΣF<sub>kx</sub> = 0 · ΣF<sub>ky</sub> = 0 · Σm<sub>A</sub>(F<sub>k</sub>) = 0 (thay tải phân bố bằng hợp lực Q trước)');
+  }
+  return card(o);
+}
+
+/* ── BÀI TOÁN CÓ THANH CHỐNG / KHUNG ────────────────────────────── */
+function strutFig(b) {
+  var sc = Math.min(50, 340 / b.L), bx = 70, by = 88, s = new Svg(480, 245);
+  function X(x) { return bx + x * sc; }
+  b.loads.forEach(function (ld) { if (ld.k === 'q') s.distLoad(X(ld.x1), X(ld.x2), by - 4, 26, 26, 'q = ' + ld.q + ' kN/m'); });
+  s.link(X(b.xC), by, X(b.xD), by + b.h * sc);
+  s.line(X(0), by, X(b.L), by, { c: COL.beam, w: 6 });
+  s.pin(X(0), by + 3, -90);
+  b.loads.forEach(function (ld) {
+    if (ld.k === 'P') { var ang = 270 + ld.side * ld.beta; s.force(X(ld.x), by - 4, ang, 50, 'F = ' + ld.F + ' kN', { size: 11.5 }); if (ld.beta) s.angle(X(ld.x), by - 4, 22, 90, ang - 180, ld.beta + '°', { gap: 10 }); }
+    if (ld.k === 'M') s.couple(X(ld.x), by, 14, ld.M > 0, 'M = ' + Math.abs(ld.M) + ' kNm', { lp: [X(ld.x), by + 28] });
+  });
+  s.text(X(0) - 4, by - 16, 'A', { size: 12 }).text(X(b.L) + 12, by, 'B', { size: 12 }).text(X(b.xC) + (b.xD > b.xC ? -12 : 12), by - 14, 'C', { size: 12 }).text(X(b.xD) + (b.xD > b.xC ? 14 : -14), by + b.h * sc, 'D', { size: 12 });
+  var ang = Math.atan2(b.h, Math.abs(b.xD - b.xC)) / DEG;
+  s.angle(X(b.xC), by, 24, b.xD > b.xC ? -ang : 180, b.xD > b.xC ? 0 : 180 + ang, fmt(ang, 0) + '°', { gap: 11 });
+  var marks = [0, b.xC, b.L]; b.loads.forEach(function (ld) { if (ld.x != null) marks.push(ld.x); if (ld.k === 'q') marks.push(ld.x1, ld.x2); });
+  marks = marks.map(r3).filter(function (v, i, a) { return a.indexOf(v) === i; }).sort(function (p, q) { return p - q; });
+  s.dims(marks.map(X), by + b.h * sc + 36, marks.slice(1).map(function (v, i) { return fmt(v - marks[i], 2) + 'm'; }));
+  return s.out();
+}
+function frameFig(f) {
+  var sc = 42, ax = 90, ay = 205, s = new Svg(420, 245);
+  function P(x, y) { return [ax + x * sc, ay - y * sc]; }
+  var C = P(0, f.h), B = P(f.b, f.h);
+  f.loads.forEach(function (ld) { if (ld.k === 'q') s.distLoad(P(ld.x1, 0)[0], P(ld.x2, 0)[0], C[1] - 4, 26, 26, 'q = ' + ld.q + ' kN/m'); });
+  s.line(ax, ay, C[0], C[1], { c: COL.beam, w: 6 }).line(C[0], C[1], B[0], B[1], { c: COL.beam, w: 6 });
+  s.fixed(ax, ay, 90);
+  f.loads.forEach(function (ld) {
+    var p = P(ld.x, ld.y);
+    if (ld.k === 'P') { s.force(p[0], p[1], ld.ang, 50, ld.name + ' = ' + ld.F + ' kN', { size: 11.5 }); }
+    if (ld.k === 'M') s.couple(p[0], p[1], 14, ld.M > 0, 'M = ' + Math.abs(ld.M) + ' kNm', { lp: [p[0], p[1] + 28] });
+  });
+  s.text(ax + 12, ay - 6, 'A', { size: 12 }).text(C[0] - 12, C[1] - 12, 'C', { size: 12 }).text(B[0] + 12, B[1] + 12, 'B', { size: 12 });
+  var W = f.loads.filter(function (l) { return l.name === 'W'; })[0];
+  s.dimsV([ay, ay - W.y * sc, C[1]], 30, [fmt(W.y) + 'm', fmt(f.h - W.y) + 'm']);
+  s.dims([ax, B[0]], ay + 26, [fmt(f.b) + 'm']);
+  return s.out();
+}
+
+function build(stt) {
+  var h = '';
+
+  /* ── T ── */
+  var rt = seededRng(stt * 7 + 7101);
+  h += secLabel('help-circle', 'Nhóm T — Lý thuyết nhanh');
+  h += card({ id: 't', grp: 'T', badge: '📘 T', icon: 'help-circle', title: 'Trắc nghiệm — Phương trình cân bằng hệ lực phẳng',
+    qs: makeMCQ('t1', 'Với một vật rắn phẳng chịu hệ lực phẳng tổng quát, số phương trình cân bằng <b>độc lập</b> tối đa là:', ['3', '2', '6', 'Vô số'], 0,
+        'Có thể viết vô số PTCB nhưng chỉ có 3 phương trình độc lập → giải tối đa 3 ẩn.', rt)
+      + makeMCQ('t2', 'Giải ra Y<sub>A</sub> = −4 kN (chiều giả thiết hướng lên). Kết luận:', ['Phản lực có độ lớn 4 kN, hướng xuống', 'Bài giải sai, phải chọn lại chiều', 'Phản lực có độ lớn 4 kN, hướng lên', 'Liên kết bị mất tác dụng'], 0,
+        'Dấu âm chỉ nghĩa là chiều thực ngược với chiều đã giả thiết.', rt)
+      + makeMCQ('t3', 'Phương trình cân bằng dạng 2 gồm Σm<sub>A</sub> = 0, Σm<sub>B</sub> = 0, ΣF<sub>kx</sub> = 0. Điều kiện:', ['Trục x không vuông góc với AB', 'Trục x vuông góc với AB', 'A, B, trục x bất kỳ', 'A trùng B'], 0,
+        'Dạng 2: hai PT mômen với A, B và PT hình chiếu lên trục x không vuông góc với AB.', rt)
+      + makeMCQ('t4', 'Để tìm N<sub>B</sub> nhanh nhất (dầm có gối cố định A, gối di động B), nên dùng phương trình:', ['Σm<sub>A</sub>(F<sub>k</sub>) = 0', 'ΣF<sub>kx</sub> = 0', 'Σm<sub>B</sub>(F<sub>k</sub>) = 0', 'ΣF<sub>ky</sub> = 0'], 0,
+        'Lấy mômen tại A loại bỏ được X<sub>A</sub>, Y<sub>A</sub> → phương trình chỉ còn một ẩn N<sub>B</sub>.', rt)
+  });
+
+  /* ── A ── */
+  h += secLabel('player-play', 'Nhóm A — Bài hướng dẫn đầy đủ');
+
+  /* A1: dầm đơn giản, q trên nửa dầm + F thẳng đứng trên nửa còn lại */
+  (function () {
+    var rng = seededRng(stt * 11 + 7201), L = rint(rng, 5, 8), c = rint(rng, 2, L - 2), qLeft = rng() < 0.5, xF;
+    var q = qLeft ? genQ(rng, 0, c) : genQ(rng, c, L);
+    xF = qLeft ? rstep(rng, c + 0.5, L - 0.5, 0.5) : rstep(rng, 0.5, c - 0.5, 0.5);
+    var b = { sup: 'SS', L: L, xA: 0, xB: L, loads: [genP(rng, xF, 'F', false), q], pts: [['A', 0, -2, 44], ['B', L, 2, 44]] };
+    h += beamCard('a1', 'A', '📐 A1', 'Bài A1 — Dầm đơn giản: lực tập trung + tải phân bố đều', b, stt);
+  })();
+
+  /* A2: dầm đơn giản, lực nghiêng + ngẫu lực */
+  (function () {
+    var rng = seededRng(stt * 13 + 7203), L = rint(rng, 4, 8), xF = rstep(rng, 1, L - 1, 0.5), xM, g = 0;
+    do { xM = rstep(rng, 0.5, L - 0.5, 0.5); } while (Math.abs(xM - xF) < 1 && g++ < 50);
+    var P = genP(rng, xF, 'F', true);
+    var b = { sup: 'SS', L: L, xA: 0, xB: L, loads: [P, genM(rng, xM)], pts: [['A', 0, -2, 44], ['B', L, 2, 44]] };
+    var extra = 'F<sub>x</sub> = ' + (P.side > 0 ? '' : '−') + P.F + '·sin' + P.beta + '° = ? · F<sub>y</sub> = −' + P.F + '·cos' + P.beta + '° = ?';
+    h += beamCard('a2', 'A', '📐 A2', 'Bài A2 — Dầm đơn giản: lực nghiêng + ngẫu lực', b, stt, extra);
+  })();
+
+  /* A3: dầm có đầu thừa, tải tam giác trên nhịp + lực ở đầu thừa */
+  (function () {
+    var rng = seededRng(stt * 17 + 7207), L = rint(rng, 5, 8), o = pick(rng, [1, 1.5, 2]), xB = L - o;
+    var b = { sup: 'SS', L: L, xA: 0, xB: xB, loads: [genT(rng, 0, xB), genP(rng, L, 'F', false)], pts: [['A', 0, -2, 44], ['B', xB, 2, 44], ['C', L, 10, 16]] };
+    b.desc = 'Dầm AC được giữ cân bằng nằm ngang nhờ gối cố định tại A và gối di động tại B (BC là đầu thừa), chịu tải tam giác trên AB với ' + ldDesc(b.loads[0]) + ' và lực ' + ldDesc(b.loads[1]) + ' tại C';
+    h += beamCard('a3', 'A', '📐 A3', 'Bài A3 — Dầm có đầu thừa: tải tam giác + lực ở đầu mút C', b, stt);
+  })();
+
+  /* A4: dầm công-xôn (ngàm) — q, lực nghiêng ở đầu tự do, ngẫu lực */
+  (function () {
+    var rng = seededRng(stt * 19 + 7209), L = rint(rng, 3, 6), c = rint(rng, 1, L - 1), xM = rstep(rng, 0.5, c - 0.5 > 0.5 ? c - 0.5 : 0.5, 0.5);
+    var b = { sup: 'CANT', L: L, loads: [genQ(rng, c, L), genP(rng, L, 'F', true), genM(rng, xM)], pts: [['A', 0, -14, -14], ['B', L, 12, 16]] };
+    h += beamCard('a4', 'A', '📐 A4', 'Bài A4 — Dầm công-xôn (ngàm A): tải phân bố, lực nghiêng, ngẫu lực', b, stt);
+  })();
+
+  /* A5: thanh đồng chất trọng lượng P + q trên AC + ngẫu lực (kiểu bài 6 phiếu 2) */
+  (function () {
+    var rng = seededRng(stt * 23 + 7211), half = rint(rng, 2, 4), L = 2 * half, Pw = rint(rng, 1, 5) * 2, xM = rstep(rng, half + 0.5, L - 0.5, 0.5);
+    var b = { sup: 'SS', L: L, xA: 0, xB: L, loads: [genQ(rng, 0, half), { k: 'P', x: half, F: Pw, beta: 0, side: 1, name: 'P' }, genM(rng, xM)], pts: [['A', 0, -2, 44], ['C', half, -12, 16], ['B', L, 2, 44]] };
+    b.desc = 'Thanh AB đồng chất, trọng lượng P = <b>' + Pw + ' kN</b> đặt tại trung điểm C, cân bằng nằm ngang nhờ gối cố định A và gối di động B. Thanh chịu tải phân bố đều q = <b>' + b.loads[0].q
+      + ' kN/m</b> trên đoạn AC và ngẫu lực M = <b>' + Math.abs(b.loads[2].M) + ' kNm</b>; AC = CB = ' + half + ' m';
+    h += beamCard('a5', 'A', '📐 A5', 'Bài A5 — Thanh có trọng lượng bản thân', b, stt);
+  })();
+
+  /* ── B ── */
+  h += secLabel('pencil', 'Nhóm B — Có công thức · Tự thay số');
+  (function () {
+    var rng = seededRng(stt * 29 + 8101), L = rint(rng, 6, 8), o = pick(rng, [1, 1.5, 2]), xA = o, xB = L;
+    var b = { sup: 'SS', L: L, xA: xA, xB: xB, loads: [genP(rng, 0, 'F', true), genQ(rng, xA, L), genM(rng, rstep(rng, xA + 1, L - 1, 0.5))], pts: [['D', 0, -12, 16], ['A', xA, -2, 44], ['B', L, 2, 44]] };
+    b.desc = 'Dầm DB được giữ cân bằng nằm ngang nhờ gối cố định tại A và gối di động tại B (DA là đầu thừa), chịu ' + b.loads.map(ldDesc).join(', ');
+    h += beamCard('b1', 'B', '✏️ B1', 'Bài B1 — Dầm có đầu thừa bên trái', b, stt);
+  })();
+  (function () {
+    var rng = seededRng(stt * 31 + 8103), L = rint(rng, 3, 6);
+    var b = { sup: 'CANT', L: L, loads: [genT(rng, 0, L), genP(rng, rstep(rng, 1, L, 0.5), 'F', false)], pts: [['A', 0, -14, -14], ['B', L, 12, 16]] };
+    h += beamCard('b2', 'B', '✏️ B2', 'Bài B2 — Dầm công-xôn chịu tải tam giác', b, stt);
+  })();
+  (function () {
+    var rng = seededRng(stt * 37 + 8107), L = rint(rng, 6, 8), c1 = rint(rng, 1, 3), c2 = rint(rng, c1 + 2, L - 1);
+    var b = { sup: 'SS', L: L, xA: 0, xB: L, loads: [genT(rng, 0, c1, 'q_max'), genP(rng, rstep(rng, c1 + 0.5, c2 - 0.5, 0.5), 'F', true), genQ(rng, c2, L, 'q')], pts: [['A', 0, -2, 44], ['B', L, 2, 44]] };
+    h += beamCard('b3', 'B', '✏️ B3', 'Bài B3 — Dầm đơn giản chịu tải hỗn hợp', b, stt);
+  })();
+
+  /* ── C ── */
+  h += secLabel('brain', 'Nhóm C — Tự nhận biết · Chỉ cho đầu bài');
+
+  /* C1: dầm AB — gối cố định A, thanh chống CD */
+  (function () {
+    var rng = seededRng(stt * 41 + 8301), L = rint(rng, 4, 6), xC = rint(rng, 2, L - 1), al = pick(rng, [45, 60]), hgt = pick(rng, [1.5, 2]);
+    var dir = rng() < 0.5 ? -1 : 1, xD = r3(xC + dir * hgt / tand(al));
+    var P = genP(rng, L, 'F', rng() < 0.5), loads = [P];
+    if (rng() < 0.6) loads.push(genQ(rng, 0, xC)); else loads.push(genM(rng, rstep(rng, 0.5, xC - 0.5, 0.5)));
+    var len = Math.hypot(xD - xC, -hgt), unk = [{ name: 'XA', x: 0, y: 0, dx: 1, dy: 0 }, { name: 'YA', x: 0, y: 0, dx: 0, dy: 1 }, { name: 'S', x: xC, y: 0, dx: (xD - xC) / len, dy: -hgt / len }];
+    var r = solve(loads, unk), b = { L: L, xC: xC, xD: xD, h: hgt, loads: loads };
+    window.__DATA.push({ id: 'c1', b: b, unk: unk, r: r });
+    h += card({ id: 'c1', grp: 'C', badge: '🧠 C1', icon: 'brain', title: 'Bài C1 — Dầm được đỡ bởi thanh chống CD',
+      prob: '🏗️ <b>Đề bài</b>: Dầm AB nằm ngang, liên kết gối cố định tại A và thanh lý tưởng CD (bỏ qua trọng lượng thanh CD, liên kết khớp hai đầu), chịu ' + loads.map(ldDesc).join(', ')
+        + '. Xác định phản lực tại A và lực S trong thanh CD (S &gt; 0: kéo, S &lt; 0: nén).',
+      fig: strutFig(b),
+      qs: makeQ('c1-S', 'S (lực trong thanh CD)', r.S, 0.02, 'kN') + makeQ('c1-XA', 'X<sub>A</sub>', r.XA, 0.02, 'kN') + makeQ('c1-YA', 'Y<sub>A</sub>', r.YA, 0.02, 'kN')
+        + makeMCQ('c1k', 'Thanh CD chịu:', ['Kéo', 'Nén'], r.S > 0 ? 0 : 1, 'Dấu của S theo quy ước S &gt; 0 là kéo.', null) });
+  })();
+
+  /* C2: khung chữ L ngàm tại chân A */
+  (function () {
+    var rng = seededRng(stt * 43 + 8303), hgt = rint(rng, 3, 4), bw = rint(rng, 3, 5), yW = rint(rng, 1, hgt - 1), Wd = pick(rng, [0, 180]);
+    var loads = [
+      { k: 'P', x: 0, y: yW, F: rint(rng, 2, 8), ang: Wd, name: 'W' },
+      { k: 'q', x1: 0, x2: bw, y: hgt, q: rint(rng, 1, 5), name: 'q' },
+      { k: 'P', x: bw, y: hgt, F: rint(rng, 2, 10), ang: 270, name: 'F' }];
+    var unk = [{ name: 'XA', x: 0, y: 0, dx: 1, dy: 0 }, { name: 'YA', x: 0, y: 0, dx: 0, dy: 1 }, { name: 'MA', m: 1 }], r = solve(loads, unk);
+    var f = { h: hgt, b: bw, loads: loads };
+    window.__DATA.push({ id: 'c2', f: f, unk: unk, r: r });
+    h += card({ id: 'c2', grp: 'C', badge: '🧠 C2', icon: 'brain', title: 'Bài C2 — Khung gấp khúc ACB ngàm tại A',
+      prob: '🏗️ <b>Đề bài</b>: Khung ACB (AC thẳng đứng cao ' + hgt + ' m, CB nằm ngang dài ' + bw + ' m) ngàm tại A, bỏ qua trọng lượng. Khung chịu lực ngang W = <b>' + loads[0].F + ' kN</b> trên cột, tải phân bố đều q = <b>'
+        + loads[1].q + ' kN/m</b> trên CB và lực F = <b>' + loads[2].F + ' kN</b> tại B. Xác định phản lực tại ngàm A.',
+      fig: frameFig(f),
+      qs: makeQ('c2-XA', 'X<sub>A</sub>', r.XA, 0.02, 'kN') + makeQ('c2-YA', 'Y<sub>A</sub>', r.YA, 0.02, 'kN') + makeQ('c2-MA', 'M<sub>A</sub>', r.MA, 0.02, 'kNm') });
+  })();
+
+  return h;
+}
+
+window.onload = function () {
+  runPage({ chapter: 'c2', id: 'C2-23-PhanLuc', progKey: 'chcs_prog_c2_23', code: '2.3' }, build);
+};
+</script>
+</body>
+</html>

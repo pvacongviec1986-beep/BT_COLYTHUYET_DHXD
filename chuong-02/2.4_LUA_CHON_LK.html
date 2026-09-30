@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2.4 — Lựa Chọn Liên Kết & Bài Toán Vật Lật</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="stylesheet" href="../assets/css/app.css?v=1">
+<script src="../config.js"></script>
+<script src="../assets/js/engine.js?v=1"></script>
+<script src="../assets/js/draw.js?v=1"></script>
+<script src="../assets/js/supports.js?v=1"></script>
+</head>
+<body>
+<header class="hdr"><div class="hdr-in">
+  <a href="index_C2.html" class="back-btn"><i class="ti ti-arrow-left"></i> Chương 2</a>
+  <div class="hdr-title"><h1>2.4 — Lựa Chọn Liên Kết & Bài Toán Vật Lật</h1><p>Tĩnh định: N = 3, hệ ẩn không đồng quy, không song song · Không lật: n·M<sub>l</sub> &lt; M<sub>g</sub></p></div>
+  <div class="hdr-right"><div class="hdr-prog" id="hdr-prog">0 / 0</div><div class="sv-badge" id="sv-badge">–</div></div>
+</div></header>
+
+<main>
+  <div class="preview-bar hidden" id="preview-bar">👀 Chế độ xem thử — chưa đăng nhập nên không nộp được bài. Về <a href="../index.html">Trang chủ</a> để nhập thông tin.</div>
+  <div class="prog-wrap">
+    <div class="prog-top"><span><i class="ti ti-target" style="vertical-align:-2px;margin-right:4px"></i>Tiến độ 2.4 — Lựa chọn liên kết & vật lật</span><span id="prog-text">–</span></div>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+  <div class="sv-infobar">
+    <i class="ti ti-id-badge-2" style="font-size:20px;opacity:.8"></i>
+    <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700" id="sv-display">Đang tải...</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.7)">Số liệu và phương án sinh riêng theo STT</div></div>
+    <div class="sv-chip" id="sv-chip">–</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd"><i class="ti ti-math-function"></i><div><h2>Tóm tắt lý thuyết</h2></div><span class="cbadge">CÔNG THỨC</span></div>
+    <div class="card-body">
+      <div class="two-col">
+        <div class="fml-box">
+          <div class="ftitle">Bài toán 1 — Lựa chọn liên kết tĩnh định</div>
+          <div class="frow">• Tổng số ẩn phản lực N = số PTCB = 3</div>
+          <div class="frow">• Hệ ẩn không được <em>đồng quy</em> (vật còn quay được)</div>
+          <div class="frow">• Hệ ẩn không được <em>song song</em> (vật còn tịnh tiến được)</div>
+          <div class="frow">• Lực không làm mất liên kết một phía (dây, tựa)</div>
+          <div class="frow">• N &gt; 3: siêu tĩnh, bậc siêu tĩnh = N − 3</div>
+        </div>
+        <div class="fml-box">
+          <div class="ftitle">Bài toán 3 — Vật lật</div>
+          <div class="frow">• Xác định điểm (trục) lật O</div>
+          <div class="frow">• Lực gây lật → M<sub>l</sub>; lực giữ → M<sub>g</sub> (lấy mômen đối với O)</div>
+          <div class="frow">• Không lật ⇔ phản lực ở gối còn lại ≥ 0 ⇔ M<sub>l</sub> ≤ M<sub>g</sub></div>
+          <div class="frow">• Có hệ số an toàn n: n·M<sub>l</sub> ≤ M<sub>g</sub> · hệ số ổn định k = M<sub>g</sub>/M<sub>l</sub></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="content"></div>
+</main>
+
+<div class="sticky-nav">
+  <span>2.4 · Lựa chọn liên kết & vật lật</span>
+  <div class="nav-btns">
+    <span id="nav-prog">0/0</span>
+    <button class="btn btn-sm btn-ghost" onclick="scrollNext()">▼ Câu chưa làm</button>
+    <button class="btn btn-sm btn-ghost" id="btn-nop" onclick="submitResult()">🔒 Nộp bài</button>
+    <a href="index_C2.html" class="btn btn-sm btn-ghost">Về chương ›</a>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   2.4 — LỰA CHỌN LIÊN KẾT (BÀI TOÁN 1) & VẬT LẬT (BÀI TOÁN 3)
+   T: lý thuyết · A1–A5: chọn phương án liên kết (hình) ·
+   B1 tấm ván · B2 khối tường · C1 cần trục (góc nghiêng lớn nhất)
+   ================================================================ */
+window.__DATA = [];
+
+function optHtml(c) { return '<div>' + cfgFig(c, { loads: true }) + '<div style="font-size:11px;color:var(--muted)">' + c.txt + '</div></div>'; }
+function whyBad(c) {
+  if (c.one) return c.txt + ': có liên kết một phía (dây chỉ chịu kéo) → có thể mất liên kết khi lực đổi chiều';
+  return c.txt + ': ' + CLS_TXT[c.cls].toLowerCase() + (c.cls === 1 ? ' bậc ' + (c.N - 3) : '') + ' (N = ' + c.N + ')';
+}
+
+function build(stt) {
+  var h = '';
+
+  /* ── T ── */
+  var rt = seededRng(stt * 7 + 9101);
+  h += secLabel('help-circle', 'Nhóm T — Lý thuyết nhanh');
+  h += card({ id: 't', grp: 'T', badge: '📘 T', icon: 'help-circle', title: 'Trắc nghiệm — Lựa chọn liên kết & vật lật',
+    qs: makeMCQ('t1', 'Vật rắn phẳng tự do có bao nhiêu bậc tự do (khả năng chuyển động độc lập)?', ['3 (2 tịnh tiến + 1 quay)', '2', '6', '1'], 0,
+        'Trong mặt phẳng: tịnh tiến theo x, theo y và quay quanh trục vuông góc mặt phẳng → cần 3 ẩn liên kết.', rt)
+      + makeMCQ('t2', 'Ba phản lực liên kết có đường tác dụng cùng đi qua một điểm K thì:', ['Vật có thể quay quanh K — liên kết không phù hợp', 'Vật cân bằng tĩnh định', 'Vật cân bằng siêu tĩnh bậc 1', 'Vật chỉ có thể tịnh tiến'], 0,
+        'Hệ ẩn đồng quy: tổng mômen các phản lực đối với K luôn bằng 0 → không cản được chuyển động quay quanh K.', rt)
+      + makeMCQ('t3', 'Thanh có ngàm tại A và gối cố định tại B. Bậc siêu tĩnh bằng:', ['2', '1', '3', '0'], 0,
+        'N = 3 + 2 = 5 → bậc siêu tĩnh = N − 3 = 2.', rt)
+      + makeMCQ('t4', 'Khi chiều của lực tác dụng chưa xác định, không nên chọn liên kết nào?', ['Dây mềm hoặc liên kết tựa (liên kết một phía)', 'Gối cố định', 'Ngàm', 'Thanh lý tưởng'], 0,
+        'Dây chỉ chịu kéo, tựa chỉ chịu nén: nếu lực đổi chiều thì phản lực cần đổi dấu → mất liên kết.', rt)
+      + makeMCQ('t5', 'Vật tựa lên hai gối A, B và có xu hướng lật quanh B. Ở trạng thái bắt đầu lật:', ['N<sub>A</sub> = 0', 'N<sub>B</sub> = 0', 'N<sub>A</sub> = N<sub>B</sub>', 'M<sub>g</sub> = 0'], 0,
+        'Khi vật sắp lật quanh B, nó bắt đầu rời gối A → N<sub>A</sub> = 0; điều kiện không lật: N<sub>A</sub> ≥ 0.', rt)
+  });
+
+  /* ── A: chọn phương án liên kết ── */
+  h += secLabel('player-play', 'Nhóm A — Lựa chọn liên kết (chọn hình đúng)');
+  var rng = seededRng(stt * 11 + 9201);
+  var good = shuffle(rng, CONFIGS.filter(function (c) { return c.cls === 0 && !c.one; }));
+  var bad = CONFIGS.filter(function (c) { return c.cls !== 0 || c.one; });
+  var qs = '';
+  for (var i = 0; i < 4; i++) {
+    var ok = good[i], wrong = shuffle(rng, bad).slice(0, 3), opts = [ok].concat(wrong);
+    window.__DATA.push({ id: 'a' + (i + 1), ok: ok.k, wrong: wrong.map(function (c) { return c.k; }) });
+    qs += makeMCQ('a' + (i + 1), 'Thanh AB chịu lực F và ngẫu lực M có <b>độ lớn và chiều chưa xác định</b>, bỏ qua trọng lượng. Phương án liên kết nào giữ thanh <b>cân bằng tĩnh định với mọi giá trị</b> của lực?',
+      opts.map(optHtml), 0, 'Đúng: ' + ok.txt + ' (N = 3, hệ ẩn không đồng quy, không song song).<br>Các phương án khác: ' + wrong.map(whyBad).join('; ') + '.', rng, 'g2');
+  }
+  /* A5: chọn phương án KHÔNG phù hợp */
+  (function () {
+    var gs = shuffle(rng, good).slice(0, 3), b = pick(rng, bad.filter(function (c) { return !c.one; }));
+    window.__DATA.push({ id: 'a5', bad: b.k });
+    qs += makeMCQ('a5', 'Trong các phương án sau, phương án nào <b>KHÔNG</b> làm thanh AB cân bằng tĩnh định?',
+      [optHtml(b)].concat(gs.map(optHtml)), 0, whyBad(b) + '. Ba phương án còn lại đều có N = 3 và hệ ẩn không đồng quy, không song song.', rng, 'g2');
+  })();
+  h += card({ id: 'a', grp: 'A', badge: '📐 A1–A5', icon: 'player-play', title: 'Bài A1–A5 — Chọn phương án liên kết', qs: qs });
+
+  /* ── B: vật lật ── */
+  h += secLabel('pencil', 'Nhóm B — Bài toán vật lật');
+
+  /* B1: tấm ván tựa lên 2 gối, người đi ra đầu thừa */
+  (function () {
+    var r = seededRng(stt * 13 + 9203), L, b, G, P, xm, g = 0;
+    do {
+      L = rint(r, 4, 6); b = L - pick(r, [1, 1.5, 2]); G = rint(r, 3, 8) * 50; P = rint(r, 5, 8) * 100;
+      xm = b + G * (b - L / 2) / P;
+    } while ((b <= L / 2 + 0.4 || xm > L - 0.15) && g++ < 100);
+    var Mg = G * (b - L / 2);
+    window.__DATA.push({ id: 'b1', L: L, b: b, G: G, P: P, xm: xm });
+    var sc = 58, s = new Svg(470, 200), x0 = 60, y0 = 105;
+    function X(x) { return x0 + x * sc; }
+    s.rect(X(0), y0 - 8, L * sc, 8, { fill: '#BCAAA4', c: COL.K });
+    [0, b].forEach(function (x) { s.poly([[X(x), y0], [X(x) - 11, y0 + 18], [X(x) + 11, y0 + 18]], { fill: '#ECEFF1', c: COL.K, w: 1.3 }); s.ground(X(x) - 18, y0 + 18, X(x) + 18, y0 + 18, 1); });
+    s.force(X(L / 2), y0 - 8, 270, 45, 'G', {});
+    var xp = Math.min(L - 0.3, b + (L - b) * 0.55);
+    s.force(X(xp), y0 - 8, 270, 60, 'P', {});
+    s.text(X(0), y0 + 34, 'A', { size: 12 }).text(X(b), y0 + 34, 'B', { size: 12 });
+    s.dims([X(0), X(b), X(L)], y0 + 56, [fmt(b) + 'm', fmt(L - b) + 'm']);
+    s.dims([X(0), X(xp)], 22, ['x = ?']);
+    h += card({ id: 'b1', grp: 'B', badge: '✏️ B1', icon: 'pencil', title: 'Bài B1 — Tấm ván bắc qua hai gối: người được đi ra đến đâu?',
+      prob: '🏗️ <b>Đề bài</b> (STT <b>' + stt + '</b>): Tấm ván đồng chất dài L = <b>' + L + ' m</b>, trọng lượng G = <b>' + G + ' N</b>, đặt tựa tự do lên hai gối A (đầu ván) và B cách A <b>' + fmt(b) + ' m</b>. Một người nặng P = <b>' + P
+        + ' N</b> đi dọc ván về phía đầu thừa bên phải. Tìm khoảng cách x lớn nhất (tính từ A) người có thể đứng mà ván không bị lật.',
+      fig: s.out(),
+      fml: frow('Trục lật: gối B. Lực giữ: G (cách B một đoạn b − L/2). Lực gây lật: P (cách B một đoạn x − b)')
+        + frow('Không lật ⇔ N<sub>A</sub> ≥ 0 ⇔ P·(x − b) ≤ G·(b − L/2)'),
+      hint: 'M<sub>g</sub> = ' + G + '·(' + fmt(b) + ' − ' + fmt(L / 2) + ') = ?<br>x<sub>max</sub> = ' + fmt(b) + ' + M<sub>g</sub>/' + P + ' = ?<br>Khi đó N<sub>A</sub> = 0 → N<sub>B</sub> = G + P = ?',
+      qs: makeQ('b1-Mg', 'Mômen giữ M<sub>g</sub> (đối với B)', Mg, 0.5, 'Nm') + makeQ('b1-xm', 'x<sub>max</sub>', xm, 0.01, 'm') + makeQ('b1-NB', 'N<sub>B</sub> khi người đứng tại x<sub>max</sub>', G + P, 0.5, 'N') });
+  })();
+
+  /* B2: khối tường chịu gió */
+  (function () {
+    var r = seededRng(stt * 17 + 9207), bw = rstep(r, 0.6, 1.2, 0.1), H = rint(r, 2, 3), G = rint(r, 8, 20), W = rint(r, 1, 4), hw = r2(H / 2 + pick(r, [0, 0.25, 0.5])), n = pick(r, [1.3, 1.5]);
+    var Ml = W * hw, Mg = G * bw / 2, k = Mg / Ml, Wmax = G * bw / (2 * n * hw);
+    window.__DATA.push({ id: 'b2', bw: bw, H: H, G: G, W: W, hw: hw, n: n });
+    var sc = 55, s = new Svg(400, 230), x0 = 170, y0 = 195, w = bw * sc, hh = H * sc;
+    s.rect(x0, y0 - hh, w, hh, { fill: '#D7CCC8', c: COL.K, w: 1.5 });
+    s.ground(x0 - 60, y0, x0 + w + 60, y0, 1);
+    s.force(x0 + w / 2, y0 - hh / 2 + 30, 270, 45, 'G', { lp: [x0 + w / 2 + 12, y0 - hh / 2 - 22] });
+    s.circle(x0 + w / 2, y0 - hh / 2, 2.5, { fill: COL.K });
+    s.force(x0, y0 - hw * sc, 0, 60, 'W', {});
+    s.circle(x0 + w, y0, 4, { fill: COL.M, c: COL.M }).text(x0 + w + 12, y0 - 10, 'O', { c: COL.M, size: 12 });
+    s.dims([x0, x0 + w], y0 + 20, [fmt(bw, 1) + 'm']);
+    s.dimsV([y0, y0 - hw * sc], x0 - 75, [fmt(hw) + 'm']);
+    s.dimsV([y0, y0 - hh], x0 + w + 45, [H + 'm']);
+    h += card({ id: 'b2', grp: 'B', badge: '✏️ B2', icon: 'pencil', title: 'Bài B2 — Khối tường chịu áp lực gió',
+      prob: '🏗️ <b>Đề bài</b>: Khối tường đặt tự do trên nền, bề rộng b = <b>' + fmt(bw, 1) + ' m</b>, cao ' + H + ' m, trọng lượng G = <b>' + G + ' kN</b> (đặt tại tâm). Hợp lực gió W = <b>' + W + ' kN</b> nằm ngang, cách nền <b>' + fmt(hw) + ' m</b>. Tường có thể lật quanh mép O.'
+        + ' a) Tính M<sub>l</sub>, M<sub>g</sub> và hệ số ổn định lật k. b) Với hệ số an toàn n = <b>' + n + '</b>, tìm W lớn nhất cho phép.',
+      fig: s.out(),
+      fml: frow('M<sub>l</sub> = W·h<sub>W</sub> · M<sub>g</sub> = G·b/2 · k = M<sub>g</sub>/M<sub>l</sub>') + frow('n·W<sub>max</sub>·h<sub>W</sub> = G·b/2 → W<sub>max</sub> = G·b/(2·n·h<sub>W</sub>)'),
+      qs: makeQ('b2-Ml', 'M<sub>l</sub>', Ml, 0.01, 'kNm') + makeQ('b2-Mg', 'M<sub>g</sub>', Mg, 0.01, 'kNm') + makeQ('b2-k', 'k = M<sub>g</sub>/M<sub>l</sub>', k, 0.01, '') + makeQ('b2-Wm', 'W<sub>max</sub> (với n)', Wmax, 0.01, 'kN') });
+  })();
+
+  /* ── C ── */
+  h += secLabel('brain', 'Nhóm C — Tự nhận biết · Chỉ cho đầu bài');
+  /* C1: cần trục — góc nghiêng lớn nhất của tay cần */
+  (function () {
+    var r = seededRng(stt * 19 + 9209), G, dG, so, L, P, n, s1, sn, g = 0;
+    do {
+      G = rint(r, 40, 90); dG = rstep(r, 1, 2, 0.1); so = rstep(r, 0.5, 1.2, 0.1); L = rint(r, 8, 12); P = rint(r, 10, 30); n = pick(r, [1.3, 1.5]);
+      s1 = (G * dG / P + so) / L; sn = (G * dG / (n * P) + so) / L;
+    } while ((s1 > 0.95 || sn < 0.2) && g++ < 200);
+    var t1 = Math.asin(s1) / DEG, tn = Math.asin(sn) / DEG;
+    window.__DATA.push({ id: 'c1', G: G, dG: dG, s: so, L: L, P: P, n: n, t1: t1, tn: tn });
+    var sc = 26, s = new Svg(470, 270), xB = 290, yg = 235;
+    function X(x) { return xB + x * sc; }  /* x đo từ B, dương sang phải */
+    var span = 3.2, yb = yg - 38;
+    s.ground(X(-span) - 40, yg, X(1) + 150, yg, 1);
+    s.rect(X(-span) - 10, yb - 34, span * sc + 30, 34, { fill: '#FFE0B2', c: COL.K, w: 1.3, rx: 3 });
+    [[-span, 'A'], [0, 'B']].forEach(function (p) { s.line(X(p[0]), yb, X(p[0]), yg - 6, { w: 3 }); s.rect(X(p[0]) - 8, yg - 6, 16, 6, { fill: COL.K }); s.text(X(p[0]) + (p[0] ? 12 : -12), yg - 16, p[1], { size: 12 }); });
+    var Ox = X(-so), Oy = yb - 34, th = 42, Lp = 150, Tx = Ox + Lp * sind(th), Ty = Oy - Lp * cosd(th);
+    s.line(Ox, Oy, Tx, Ty, { c: '#F57C00', w: 5 }).circle(Ox, Oy, 4);
+    s.line(Ox, Oy, Ox, Oy - 60, { c: COL.dim, w: 1, dash: '4 3' }).angle(Ox, Oy, 34, 90, 90 - th, 'θ', { gap: 10, size: 13 });
+    s.line(Tx, Ty, Tx, Ty + 95, { c: '#8D6E63', w: 1.2 }).rect(Tx - 12, Ty + 95, 24, 18, { fill: '#90A4AE', c: COL.K });
+    s.force(Tx, Ty + 113 + 32, 270, 30, '', {}).text(Tx + 14, Ty + 128, 'P', { c: COL.F, size: 12 });
+    s.circle(X(-dG), yb - 17, 2.5, { fill: COL.K }).arrow(X(-dG), yb - 17, X(-dG), yb + 24, { c: COL.F, w: 2.2 }).text(X(-dG) - 12, yb + 14, 'G', { c: COL.F, size: 12 });
+    s.text(Ox - 12, Oy + 12, 'O', { size: 11 });
+    s.dims([X(-dG), X(0)], yg + 16, ['d']);
+    s.dims([X(-so), X(0)], 22, ['s']);
+    s.line(X(-so), 28, X(-so), Oy - 4, { c: COL.dim, w: 0.8, dash: '2 3' }).line(X(0), 28, X(0), yb - 36, { c: COL.dim, w: 0.8, dash: '2 3' });
+    h += card({ id: 'c1', grp: 'C', badge: '🧠 C1', icon: 'brain', title: 'Bài C1 — Góc nghiêng lớn nhất của tay cần trục',
+      prob: '🏗️ <b>Đề bài</b>: Xe cần trục đứng trên hai chân chống A, B. Trọng lượng thân xe G = <b>' + G + ' kN</b>, đặt cách chân chống B một đoạn d = <b>' + fmt(dG, 1) + ' m</b> (về phía A). Tay cần dài L = <b>' + L + ' m</b> quay quanh khớp O cách B một đoạn s = <b>'
+        + fmt(so, 1) + ' m</b> theo phương ngang (về phía A), nghiêng góc θ so với phương thẳng đứng về phía B; bỏ qua trọng lượng tay cần. Vật nâng P = <b>' + P + ' kN</b> treo ở đầu cần. Xác định θ lớn nhất để xe không bị lật: a) không kể hệ số an toàn; b) với hệ số an toàn n = <b>' + n + '</b>.',
+      fig: s.out(),
+      qs: makeQ('c1-Mg', 'Mômen giữ M<sub>g</sub> đối với B', G * dG, 0.02, 'kNm') + makeQ('c1-t1', 'θ<sub>max</sub> (n = 1)', t1, 0.3, '°') + makeQ('c1-tn', 'θ<sub>max</sub> (n = ' + n + ')', tn, 0.3, '°') });
+  })();
+
+  return h;
+}
+
+window.onload = function () {
+  runPage({ chapter: 'c2', id: 'C2-24-LuaChonLK', progKey: 'chcs_prog_c2_24', code: '2.4' }, build);
+};
+</script>
+</body>
+</html>

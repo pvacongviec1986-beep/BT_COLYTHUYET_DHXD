@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1.1 — Khái Niệm & Hệ Tiên Đề Tĩnh Học</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="stylesheet" href="../assets/css/app.css?v=1">
+<script src="../config.js"></script>
+<script src="../assets/js/engine.js?v=1"></script>
+<script src="../assets/js/draw.js?v=1"></script>
+</head>
+<body>
+<header class="hdr"><div class="hdr-in">
+  <a href="index_C1.html" class="back-btn"><i class="ti ti-arrow-left"></i> Chương 1</a>
+  <div class="hdr-title"><h1>1.1 — Khái Niệm Cơ Bản & Hệ Tiên Đề Tĩnh Học</h1><p>Lực · Hệ lực tương đương · Hợp lực · 5 tiên đề · Hình bình hành lực · Hệ quả 3 lực</p></div>
+  <div class="hdr-right"><div class="hdr-prog" id="hdr-prog">0 / 0</div><div class="sv-badge" id="sv-badge">–</div></div>
+</div></header>
+
+<main>
+  <div class="preview-bar hidden" id="preview-bar">👀 Chế độ xem thử — chưa đăng nhập nên không nộp được bài. Về <a href="../index.html">Trang chủ</a> để nhập thông tin.</div>
+  <div class="prog-wrap">
+    <div class="prog-top"><span><i class="ti ti-target" style="vertical-align:-2px;margin-right:4px"></i>Tiến độ 1.1 — Hệ tiên đề</span><span id="prog-text">–</span></div>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+  <div class="sv-infobar">
+    <i class="ti ti-id-badge-2" style="font-size:20px;opacity:.8"></i>
+    <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700" id="sv-display">Đang tải...</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.7)">Câu hỏi và số liệu sinh riêng theo STT</div></div>
+    <div class="sv-chip" id="sv-chip">–</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd"><i class="ti ti-book"></i><div><h2>Tóm tắt — Hệ tiên đề tĩnh học</h2></div><span class="cbadge">LÝ THUYẾT</span></div>
+    <div class="card-body">
+      <div class="two-col">
+        <div class="fml-box">
+          <div class="ftitle">5 tiên đề</div>
+          <div class="frow"><em>TĐ1</em> Cặp lực cân bằng: cùng đường tác dụng, ngược chiều, cùng độ lớn</div>
+          <div class="frow"><em>TĐ2</em> Thêm/bớt cặp lực cân bằng không đổi tác dụng → định lý trượt lực</div>
+          <div class="frow"><em>TĐ3</em> Hình bình hành lực: (F₁, F₂) đồng quy ~ R = F₁ + F₂</div>
+          <div class="frow"><em>TĐ4</em> Tác dụng — phản tác dụng: F₁₂ = −F₂₁ (đặt lên 2 vật khác nhau)</div>
+          <div class="frow"><em>TĐ5</em> Hoá rắn: vật biến dạng đã cân bằng, hoá rắn vẫn cân bằng</div>
+        </div>
+        <div class="fml-box">
+          <div class="ftitle">Công thức dùng trong bài</div>
+          <div class="frow">R = √(F₁² + F₂² + 2F₁F₂·cos α) (α: góc giữa F₁, F₂)</div>
+          <div class="frow">tan β = F₂·sin α / (F₁ + F₂·cos α) (β: góc giữa R và F₁)</div>
+          <div class="frow">Hệ quả 3 lực: 3 lực phẳng cân bằng → đồng quy hoặc song song</div>
+          <div class="frow">Định lý Lamy: T₁/sin(β) = T₂/sin(α) = P/sin(α+β)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="content"></div>
+</main>
+
+<div class="sticky-nav">
+  <span>1.1 · Hệ tiên đề tĩnh học</span>
+  <div class="nav-btns">
+    <span id="nav-prog">0/0</span>
+    <button class="btn btn-sm btn-ghost" onclick="scrollNext()">▼ Câu chưa làm</button>
+    <button class="btn btn-sm btn-ghost" id="btn-nop" onclick="submitResult()">🔒 Nộp bài</button>
+    <a href="1.2_LIEN_KET.html" class="btn btn-sm btn-ghost">Bài tiếp ›</a>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   1.1 — KHÁI NIỆM CƠ BẢN & HỆ TIÊN ĐỀ TĨNH HỌC
+   T: 8 câu trắc nghiệm (rút từ ngân hàng 13 câu theo STT)
+   A1–A2 hình bình hành lực · A3 hai dây treo (Lamy) · A4 thanh tựa (hệ quả 3 lực)
+   B1–B3 tương tự, tự thay số · C1 bài ngược hình bình hành · C2 tải trọng cho phép
+   ================================================================ */
+window.__DATA = [];
+
+var BANK = [
+  ['Vật rắn tuyệt đối là vật:', ['Có khoảng cách giữa hai điểm bất kỳ luôn không đổi', 'Có khối lượng rất lớn', 'Không chịu tác dụng của lực', 'Không bị di chuyển'], 'Vật rắn tuyệt đối không biến dạng: khoảng cách giữa hai điểm bất kỳ luôn không đổi.'],
+  ['Các yếu tố đặc trưng của lực gồm:', ['Điểm đặt, phương, chiều, độ lớn', 'Phương, chiều, độ lớn', 'Điểm đặt và độ lớn', 'Độ lớn và thời gian tác dụng'], 'Lực là đại lượng véctơ buộc: có điểm đặt, phương, chiều, độ lớn.'],
+  ['Hai hệ lực được gọi là tương đương khi:', ['Chúng có cùng tác dụng cơ học lên cùng một vật rắn', 'Chúng có cùng số lượng lực', 'Tổng độ lớn các lực bằng nhau', 'Chúng tác dụng lên hai vật giống nhau'], 'Định nghĩa: hai hệ lực tương đương nếu có tác dụng cơ học như nhau lên cùng một vật rắn.'],
+  ['Hợp lực của một hệ lực là:', ['Một lực duy nhất tương đương với cả hệ lực', 'Tổng độ lớn các lực trong hệ', 'Lực lớn nhất trong hệ', 'Một ngẫu lực tương đương với hệ lực'], 'Nếu hệ lực tương đương với một lực R thì R gọi là hợp lực. Không phải hệ lực nào cũng có hợp lực.'],
+  ['Theo tiên đề 1, vật rắn tự do chịu tác dụng của hai lực F₁, F₂ cân bằng khi và chỉ khi:', ['F₁, F₂ cùng đường tác dụng, ngược chiều, cùng độ lớn', 'F₁, F₂ song song, ngược chiều, cùng độ lớn', 'F₁, F₂ vuông góc và cùng độ lớn', 'F₁, F₂ cùng chiều, cùng độ lớn'], 'Hai lực song song ngược chiều cùng độ lớn nhưng không cùng đường tác dụng tạo thành ngẫu lực, không cân bằng.'],
+  ['Định lý trượt lực (trượt lực dọc đường tác dụng không làm thay đổi tác dụng) là hệ quả của:', ['Tiên đề 2 (thêm, bớt cặp lực cân bằng)', 'Tiên đề 3 (hình bình hành lực)', 'Tiên đề 4 (tác dụng – phản tác dụng)', 'Tiên đề 5 (hoá rắn)'], 'Thêm cặp lực cân bằng (F<sub>B</sub>, F\'<sub>B</sub>) tại B rồi bớt cặp (F<sub>A</sub>, F\'<sub>B</sub>) → hệ quả của TĐ1, TĐ2.'],
+  ['Lực tác dụng và phản lực tác dụng (tiên đề 4) <b>không</b> phải là cặp lực cân bằng vì:', ['Chúng đặt lên hai vật khác nhau', 'Chúng không cùng độ lớn', 'Chúng không cùng đường tác dụng', 'Chúng cùng chiều'], 'F₁₂ = −F₂₁ nhưng một lực đặt lên vật 1, một lực đặt lên vật 2.'],
+  ['Ba lực nằm trong một mặt phẳng cân bằng thì đường tác dụng của chúng:', ['Đồng quy hoặc song song', 'Luôn song song', 'Luôn vuông góc với nhau', 'Luôn đồng quy'], 'Hệ quả 3 lực cân bằng (hệ quả 2 của TĐ3).'],
+  ['Tiên đề nào áp dụng được cho <b>mọi</b> vật thể (kể cả vật biến dạng)?', ['Tiên đề 4 (tác dụng – phản tác dụng)', 'Tiên đề 1', 'Tiên đề 2', 'Tiên đề 3'], 'TĐ1, 2, 3 chỉ áp dụng cho vật rắn tuyệt đối; TĐ4 cho mọi vật; TĐ5 mở rộng TĐ1–3 cho vật biến dạng đã cân bằng.'],
+  ['Ý nghĩa của tiên đề hoá rắn (TĐ5) là:', ['Cho phép áp dụng điều kiện cân bằng của vật rắn cho vật biến dạng đã cân bằng', 'Cho phép bỏ qua trọng lượng vật', 'Cho phép trượt lực dọc đường tác dụng', 'Cho phép thay hai lực đồng quy bằng một lực'], 'Vật biến dạng ở trạng thái cân bằng, nếu hoá rắn lại vẫn cân bằng → dùng được các PTCB của vật rắn.'],
+  ['Vật rắn tự do là vật:', ['Có thể di chuyển tự do, không bị vật nào cản trở chuyển động', 'Không chịu lực nào tác dụng', 'Đang đứng yên', 'Chỉ chịu tác dụng của trọng lực'], 'Vật chịu liên kết: có vật khác cản trở chuyển động. Vật tự do: không bị cản trở.'],
+  ['Trong tĩnh học, tác dụng cơ học giữa các vật được thay thế bằng:', ['Lực', 'Vận tốc', 'Năng lượng', 'Gia tốc'], 'Tác dụng cơ học làm vật cân bằng hoặc chuyển động — được thay thế bằng lực để nghiên cứu.'],
+  ['Có thể coi một vật là chất điểm (bỏ qua kích thước) khi:', ['Kích thước không ảnh hưởng hoặc ảnh hưởng không đáng kể đến kết quả bài toán', 'Vật có khối lượng nhỏ', 'Vật đứng yên', 'Vật có hình cầu'], 'Nguyên tắc mô hình hoá: bỏ qua yếu tố không ảnh hưởng hoặc ảnh hưởng không đáng kể.']
+];
+
+/* ── HÌNH BÌNH HÀNH LỰC ───────────────────────────────────────── */
+function genPara(rng, obtuse) {
+  var F1 = rint(rng, 2, 12) * 10, F2 = rint(rng, 2, 12) * 10, al = obtuse ? pick(rng, [105, 120, 135, 150]) : pick(rng, [30, 45, 60, 75, 90]), t1 = rint(rng, 0, 5) * 15;
+  var R = Math.sqrt(F1 * F1 + F2 * F2 + 2 * F1 * F2 * cosd(al)), be = Math.atan2(F2 * sind(al), F1 + F2 * cosd(al)) / DEG;
+  return { F1: F1, F2: F2, al: al, t1: t1, R: R, be: be };
+}
+function paraFig(d, o) {
+  o = o || {};
+  /* Toạ độ cục bộ (O ở gốc), sau đó co giãn + tịnh tiến để hình vừa khung 380×250 */
+  var a1 = d.t1, a2 = d.t1 + d.al;
+  var q1 = [d.F1 * cosd(a1), -d.F1 * sind(a1)], q2 = [d.F2 * cosd(a2), -d.F2 * sind(a2)], qr = [q1[0] + q2[0], q1[1] + q2[1]];
+  var xs = [0, q1[0], q2[0], qr[0]], ys = [0, q1[1], q2[1], qr[1]];
+  var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs), y0 = Math.min.apply(null, ys), y1 = Math.max.apply(null, ys);
+  var k = Math.min(290 / Math.max(x1 - x0, 1), 180 / Math.max(y1 - y0, 1));
+  var s = new Svg(380, 250), ox = 45 + (290 - (x1 - x0) * k) / 2 - x0 * k, oy = 35 + (180 - (y1 - y0) * k) / 2 - y0 * k;
+  var p1 = [ox + q1[0] * k, oy + q1[1] * k], p2 = [ox + q2[0] * k, oy + q2[1] * k], pr = [ox + qr[0] * k, oy + qr[1] * k];
+  s.line(p1[0], p1[1], pr[0], pr[1], { c: COL.dim, w: 1, dash: '5 4' }).line(p2[0], p2[1], pr[0], pr[1], { c: COL.dim, w: 1, dash: '5 4' });
+  s.arrow(ox, oy, p1[0], p1[1], { c: COL.F, w: 2.4 }).arrow(ox, oy, p2[0], p2[1], { c: COL.F, w: 2.4 });
+  if (!o.hideR) s.arrow(ox, oy, pr[0], pr[1], { c: COL.R, w: 2.4, dash: o.unknownR ? '6 4' : null });
+  s.text(p1[0] + 12 * cosd(a1) + 8, p1[1] - 12 * sind(a1), o.n1 || 'F_1', { c: COL.F }).text(p2[0] + 14 * cosd(a2), p2[1] - 14 * sind(a2), o.n2 || 'F_2', { c: COL.F });
+  if (!o.hideR) s.text(pr[0] + 14, pr[1] - 6, o.nR || 'R', { c: COL.R });
+  s.angle(ox, oy, 30, a1, a2, o.alLabel || (d.al + '°'), { gap: 12 });
+  s.circle(ox, oy, 3, { fill: COL.K }).text(ox - 10, oy + 12, 'O', { size: 12 });
+  return s.out();
+}
+/* ── HAI DÂY TREO (LAMY) ──────────────────────────────────────── */
+function genLamy(rng) {
+  var P = rint(rng, 4, 20) * 50, a = pick(rng, [20, 30, 40, 45, 50, 60]), b = pick(rng, [20, 30, 40, 45, 50, 60]);
+  return { P: P, a: a, b: b, T1: P * sind(b) / sind(a + b), T2: P * sind(a) / sind(a + b) };
+}
+function lamyFig(d) {
+  var s = new Svg(360, 230), ox = 180, oy = 140, L = 110;
+  var A = [ox - L * sind(d.a), oy - L * cosd(d.a)], B = [ox + L * sind(d.b), oy - L * cosd(d.b)], top = Math.min(A[1], B[1]);
+  /* kéo dài cho hai điểm neo cùng nằm trên trần */
+  var ty = top - 8, Ax = ox - (oy - ty) * tand(d.a), Bx = ox + (oy - ty) * tand(d.b);
+  s.ground(Ax - 25, ty, Bx + 25, ty, -1);
+  s.line(ox, oy, Ax, ty, { c: '#8D6E63', w: 1.6 }).line(ox, oy, Bx, ty, { c: '#8D6E63', w: 1.6 });
+  s.line(ox, oy, ox, ty, { c: COL.dim, w: 1, dash: '4 4' });
+  s.angle(ox, oy, 38, 90, 90 + d.a, d.a + '°', { gap: 11 }).angle(ox, oy, 52, 90 - d.b, 90, d.b + '°', { gap: 11 });
+  s.line(ox, oy, ox, oy + 30, { c: '#8D6E63', w: 1.6 }).rect(ox - 18, oy + 30, 36, 26, { fill: '#90A4AE', c: COL.K });
+  s.arrow(ox, oy + 43, ox, oy + 85, { c: COL.F, w: 2.2 }).text(ox + 14, oy + 78, 'P', { c: COL.F });
+  s.circle(ox, oy, 3.5, { fill: COL.K }).text(ox + 12, oy + 6, 'O', { size: 12 });
+  s.text((ox + Ax) / 2 - 16, (oy + ty) / 2, '1', { c: '#6D4C41', size: 12 }).text((ox + Bx) / 2 + 16, (oy + ty) / 2, '2', { c: '#6D4C41', size: 12 });
+  return s.out();
+}
+/* ── THANH TỰA (HỆ QUẢ 3 LỰC) ─────────────────────────────────── */
+function genBar(rng) {
+  var P = rint(rng, 2, 12) * 50, ph = pick(rng, [30, 40, 45, 50, 60]), L = rint(rng, 3, 6);
+  var T = P / (2 * tand(ph)), RA = Math.hypot(T, P), psi = Math.atan2(P, T) / DEG;
+  return { P: P, ph: ph, L: L, T: T, RA: RA, psi: psi };
+}
+function barFig(d) {
+  var s = new Svg(380, 250), sc = 160 / d.L, Ax = 150, Ay = 212;   /* A = đỉnh gối */
+  var Bx = Ax + d.L * sc * cosd(d.ph), By = Ay - d.L * sc * sind(d.ph), Mx = (Ax + Bx) / 2, My = (Ay + By) / 2;
+  var wall = 50;
+  s.ground(wall, Ay + 17, wall, 15, 1);
+  s.line(wall, Ay + 17, 350, Ay + 17, { c: COL.K, w: 1.2 });
+  s.line(Ax, Ay, Bx, By, { c: COL.beam, w: 6 });
+  s.pin(Ax, Ay, 0);
+  s.rope(Bx, By, wall, By);
+  s.arrow(Mx, My, Mx, My + 50, { c: COL.F, w: 2.2 }).text(Mx + 12, My + 42, 'P', { c: COL.F });
+  s.circle(Mx, My, 2.5, { fill: COL.K });
+  s.line(Ax, Ay, Ax + 60, Ay, { c: COL.dim, w: 1, dash: '4 3' }).angle(Ax, Ay, 34, 0, d.ph, 'φ', { gap: 12, size: 13 });
+  s.text(Ax - 16, Ay - 18, 'A', { size: 12 }).text(Bx + 12, By - 10, 'B', { size: 12 }).text(Mx + 10, My - 10, 'C', { size: 11 });
+  return s.out();
+}
+
+function build(stt) {
+  var h = '';
+  /* ── T ── */
+  var rt = seededRng(stt * 7 + 1101), qs = '';
+  shuffle(rt, BANK.map(function (_, i) { return i; })).slice(0, 8).forEach(function (bi, k) {
+    var b = BANK[bi];
+    window.__DATA.push({ id: 't' + k, bank: bi });
+    qs += makeMCQ('t' + k, b[0], b[1], 0, b[2], rt);
+  });
+  h += secLabel('help-circle', 'Nhóm T — Khái niệm & tiên đề');
+  h += card({ id: 't', grp: 'T', badge: '📘 T', icon: 'help-circle', title: 'Trắc nghiệm — Khái niệm cơ bản & hệ tiên đề', qs: qs });
+
+  /* ── A ── */
+  h += secLabel('player-play', 'Nhóm A — Bài hướng dẫn đầy đủ');
+  [['a1', false, 11], ['a2', true, 13]].forEach(function (c) {
+    var d = genPara(seededRng(stt * c[2] + 1201), c[1]);
+    window.__DATA.push({ id: c[0], d: d });
+    h += card({ id: c[0], grp: 'A', badge: '📐 ' + c[0].toUpperCase(), title: 'Bài ' + c[0].toUpperCase() + ' — Tiên đề hình bình hành lực' + (c[1] ? ' (góc tù)' : ''),
+      prob: '🏗️ <b>Đề bài</b> (STT <b>' + stt + '</b>): Hai lực đồng quy tại O: F<sub>1</sub> = <b>' + d.F1 + ' N</b>, F<sub>2</sub> = <b>' + d.F2 + ' N</b>, hợp với nhau góc α = <b>' + d.al
+        + '°</b>. Xác định độ lớn hợp lực R và góc β giữa R với F<sub>1</sub>.',
+      fig: paraFig(d, { unknownR: true, nR: 'R = ?' }),
+      fml: frow('R = √(F₁² + F₂² + 2F₁F₂·cos α)') + frow('tan β = F₂·sin α / (F₁ + F₂·cos α)'),
+      hint: 'R = √(' + d.F1 + '² + ' + d.F2 + '² + 2·' + d.F1 + '·' + d.F2 + '·cos' + d.al + '°) = ?<br>tan β = ' + d.F2 + '·sin' + d.al + '° / (' + d.F1 + ' + ' + d.F2 + '·cos' + d.al + '°) = ?'
+        + (c[1] ? '<br>Lưu ý: cos' + d.al + '° &lt; 0' : ''),
+      qs: makeQ(c[0] + '-R', 'Độ lớn hợp lực R', d.R, 0.1, 'N') + makeQ(c[0] + '-be', 'Góc β = (F<sub>1</sub>, R)', d.be, 0.3, '°') });
+  });
+  (function () {
+    var d = genLamy(seededRng(stt * 17 + 1207));
+    window.__DATA.push({ id: 'a3', d: d });
+    h += card({ id: 'a3', grp: 'A', badge: '📐 A3', title: 'Bài A3 — Vật treo bởi hai dây (hệ lực đồng quy cân bằng)',
+      prob: '🏗️ <b>Đề bài</b> (STT <b>' + stt + '</b>): Vật nặng P = <b>' + d.P + ' N</b> treo tại móc O bởi hai dây: dây 1 lệch <b>' + d.a + '°</b>, dây 2 lệch <b>' + d.b
+        + '°</b> so với phương thẳng đứng. Tìm lực căng T<sub>1</sub>, T<sub>2</sub>.',
+      fig: lamyFig(d),
+      fml: frow('Móc O cân bằng dưới 3 lực đồng quy (P, T₁, T₂):') + frow('ΣF<sub>x</sub>: −T₁·sin α + T₂·sin β = 0 · ΣF<sub>y</sub>: T₁·cos α + T₂·cos β − P = 0') + frow('→ T₁ = P·sin β / sin(α+β) · T₂ = P·sin α / sin(α+β)'),
+      hint: 'sin(α+β) = sin(' + d.a + '° + ' + d.b + '°) = ?<br>T₁ = ' + d.P + '·sin' + d.b + '° / sin' + (d.a + d.b) + '° = ? · T₂ = ' + d.P + '·sin' + d.a + '° / sin' + (d.a + d.b) + '° = ?',
+      qs: makeQ('a3-T1', 'T<sub>1</sub>', d.T1, 0.2, 'N') + makeQ('a3-T2', 'T<sub>2</sub>', d.T2, 0.2, 'N') });
+  })();
+  (function () {
+    var d = genBar(seededRng(stt * 19 + 1209));
+    window.__DATA.push({ id: 'a4', d: d });
+    h += card({ id: 'a4', grp: 'A', badge: '📐 A4', title: 'Bài A4 — Hệ quả 3 lực cân bằng: thanh tựa và dây ngang',
+      prob: '🏗️ <b>Đề bài</b> (STT <b>' + stt + '</b>): Thanh AB đồng chất dài ' + d.L + ' m, trọng lượng P = <b>' + d.P + ' N</b>, đầu A liên kết bản lề với nền, đầu B được giữ bởi dây nằm ngang buộc vào tường. Thanh nghiêng góc φ = <b>' + d.ph
+        + '°</b> so với phương ngang. Dùng hệ quả 3 lực, xác định phương của phản lực tại A, lực căng dây T và độ lớn R<sub>A</sub>.',
+      fig: barFig(d),
+      fml: frow('3 lực P, T, R<sub>A</sub> cân bằng → đồng quy tại K = giao của đường tác dụng P (qua trung điểm C) và T (qua B)')
+        + frow('K = (L·cos φ/2; L·sin φ) so với A → tan ψ = L·sin φ / (L·cos φ/2) = 2·tan φ')
+        + frow('Tam giác lực: T = P/tan ψ = P/(2·tan φ) · R<sub>A</sub> = P/sin ψ'),
+      hint: 'tan ψ = 2·tan' + d.ph + '° = ? → ψ = ?<br>T = ' + d.P + '/(2·tan' + d.ph + '°) = ? · R<sub>A</sub> = √(T² + ' + d.P + '²) = ?',
+      qs: makeQ('a4-psi', 'Góc ψ giữa R<sub>A</sub> và phương ngang', d.psi, 0.3, '°') + makeQ('a4-T', 'Lực căng dây T', d.T, 0.2, 'N') + makeQ('a4-RA', 'Độ lớn R<sub>A</sub>', d.RA, 0.2, 'N') });
+  })();
+
+  /* ── B ── */
+  h += secLabel('pencil', 'Nhóm B — Có công thức · Tự thay số');
+  (function () {
+    var d = genPara(seededRng(stt * 23 + 2101), seededRng(stt * 5 + 3)() < 0.5);
+    window.__DATA.push({ id: 'b1', d: d });
+    h += card({ id: 'b1', grp: 'B', badge: '✏️ B1', title: 'Bài B1 — Hợp lực của hai lực đồng quy',
+      prob: '🏗️ <b>Đề bài</b>: F<sub>1</sub> = <b>' + d.F1 + ' N</b>, F<sub>2</sub> = <b>' + d.F2 + ' N</b>, α = <b>' + d.al + '°</b>. Tìm R và β.',
+      fig: paraFig(d, { unknownR: true, nR: 'R = ?' }), fml: frow('R = √(F₁² + F₂² + 2F₁F₂·cos α) · tan β = F₂·sin α / (F₁ + F₂·cos α)'),
+      qs: makeQ('b1-R', 'R', d.R, 0.1, 'N') + makeQ('b1-be', 'β = (F<sub>1</sub>, R)', d.be, 0.3, '°') });
+  })();
+  (function () {
+    var d = genLamy(seededRng(stt * 29 + 2103));
+    window.__DATA.push({ id: 'b2', d: d });
+    h += card({ id: 'b2', grp: 'B', badge: '✏️ B2', title: 'Bài B2 — Lực căng hai dây treo',
+      prob: '🏗️ <b>Đề bài</b>: P = <b>' + d.P + ' N</b>, các góc lệch so với phương đứng như hình. Tìm T<sub>1</sub>, T<sub>2</sub>.',
+      fig: lamyFig(d), fml: frow('T₁ = P·sin β / sin(α+β) · T₂ = P·sin α / sin(α+β)'),
+      qs: makeQ('b2-T1', 'T<sub>1</sub>', d.T1, 0.2, 'N') + makeQ('b2-T2', 'T<sub>2</sub>', d.T2, 0.2, 'N') });
+  })();
+  (function () {
+    var d = genBar(seededRng(stt * 31 + 2107));
+    window.__DATA.push({ id: 'b3', d: d });
+    h += card({ id: 'b3', grp: 'B', badge: '✏️ B3', title: 'Bài B3 — Thanh tựa giữ bằng dây ngang',
+      prob: '🏗️ <b>Đề bài</b>: Thanh AB đồng chất, P = <b>' + d.P + ' N</b>, φ = <b>' + d.ph + '°</b> (như bài A4). Tìm T và R<sub>A</sub>.',
+      fig: barFig(d), fml: frow('tan ψ = 2·tan φ · T = P/(2·tan φ) · R<sub>A</sub> = √(T² + P²)'),
+      qs: makeQ('b3-T', 'T', d.T, 0.2, 'N') + makeQ('b3-RA', 'R<sub>A</sub>', d.RA, 0.2, 'N') });
+  })();
+
+  /* ── C ── */
+  h += secLabel('brain', 'Nhóm C — Tự nhận biết · Chỉ cho đầu bài');
+  (function () {
+    var r = seededRng(stt * 37 + 2301), d = genPara(r, r() < 0.5), R = Math.round(d.R);
+    var al = Math.acos((R * R - d.F1 * d.F1 - d.F2 * d.F2) / (2 * d.F1 * d.F2)) / DEG;
+    window.__DATA.push({ id: 'c1', F1: d.F1, F2: d.F2, R: R, al: al });
+    h += card({ id: 'c1', grp: 'C', badge: '🧠 C1', icon: 'brain', title: 'Bài C1 — Tìm góc giữa hai lực khi biết hợp lực',
+      prob: '🏗️ <b>Đề bài</b>: Hai lực F<sub>1</sub> = <b>' + d.F1 + ' N</b> và F<sub>2</sub> = <b>' + d.F2 + ' N</b> đồng quy tại O có hợp lực R = <b>' + R + ' N</b>. Tìm góc α giữa hai lực.',
+      fig: paraFig({ F1: d.F1, F2: d.F2, R: R, al: al, t1: d.t1 }, { alLabel: 'α = ?', nR: 'R' }),
+      qs: makeQ('c1-al', 'Góc α', al, 0.3, '°') });
+  })();
+  (function () {
+    var d = genLamy(seededRng(stt * 41 + 2303)), Tal = rint(seededRng(stt * 43 + 1), 4, 12) * 100;
+    var Pmax = Tal * sind(d.a + d.b) / Math.max(sind(d.a), sind(d.b)), crit = d.b >= d.a ? 0 : 1; /* T1 ∝ sin β: dây 1 căng hơn khi β > α */
+    if (d.a === d.b) crit = 2;
+    window.__DATA.push({ id: 'c2', d: d, Tal: Tal, Pmax: Pmax, crit: crit });
+    h += card({ id: 'c2', grp: 'C', badge: '🧠 C2', icon: 'brain', title: 'Bài C2 — Tải trọng lớn nhất cho phép',
+      prob: '🏗️ <b>Đề bài</b>: Hệ hai dây treo như hình (dây 1 lệch <b>' + d.a + '°</b>, dây 2 lệch <b>' + d.b + '°</b> so với phương đứng). Mỗi dây chịu được lực căng tối đa <b>' + Tal
+        + ' N</b>. Xác định trọng lượng P lớn nhất của vật có thể treo và cho biết dây nào đứt trước khi quá tải.',
+      fig: lamyFig(d),
+      qs: makeQ('c2-P', 'P<sub>max</sub>', Pmax, 0.5, 'N') + makeMCQ('c2k', 'Khi tăng P vượt P<sub>max</sub>, dây nào đứt trước?', ['Dây 1', 'Dây 2', 'Hai dây đứt đồng thời'], crit,
+        'T₁/T₂ = sin β / sin α: dây lệch <b>ít</b> hơn so với phương đứng chịu lực căng lớn hơn.', null) });
+  })();
+
+  return h;
+}
+
+window.onload = function () {
+  runPage({ chapter: 'c1', id: 'C1-11-TienDe', progKey: 'chcs_prog_c1_11', code: '1.1' }, build);
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2.2 — Ngẫu Lực & Thu Gọn Hệ Lực Phẳng</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="stylesheet" href="../assets/css/app.css?v=1">
+<script src="../config.js"></script>
+<script src="../assets/js/engine.js?v=1"></script>
+<script src="../assets/js/draw.js?v=1"></script>
+</head>
+<body>
+<header class="hdr"><div class="hdr-in">
+  <a href="index_C2.html" class="back-btn"><i class="ti ti-arrow-left"></i> Chương 2</a>
+  <div class="hdr-title"><h1>2.2 — Ngẫu Lực & Thu Gọn Hệ Lực Phẳng</h1><p>m<sub>O</sub>(F) = x·F<sub>y</sub> − y·F<sub>x</sub> · (F₁,…,Fₙ) ~ (R'<sub>O</sub>, M<sub>O</sub>) · Varignon</p></div>
+  <div class="hdr-right"><div class="hdr-prog" id="hdr-prog">0 / 0</div><div class="sv-badge" id="sv-badge">–</div></div>
+</div></header>
+
+<main>
+  <div class="preview-bar hidden" id="preview-bar">👀 Chế độ xem thử — chưa đăng nhập nên không nộp được bài. Về <a href="../index.html">Trang chủ</a> để nhập thông tin.</div>
+  <div class="prog-wrap">
+    <div class="prog-top"><span><i class="ti ti-target" style="vertical-align:-2px;margin-right:4px"></i>Tiến độ 2.2 — Thu gọn hệ lực phẳng</span><span id="prog-text">–</span></div>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+  <div class="sv-infobar">
+    <i class="ti ti-id-badge-2" style="font-size:20px;opacity:.8"></i>
+    <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700" id="sv-display">Đang tải...</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.7)">Số liệu sinh riêng theo STT · Mômen dương khi quay ngược chiều kim đồng hồ</div></div>
+    <div class="sv-chip" id="sv-chip">–</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd"><i class="ti ti-math-function"></i><div><h2>Tóm tắt lý thuyết — Mômen, ngẫu lực, thu gọn hệ lực phẳng</h2></div><span class="cbadge">CÔNG THỨC</span></div>
+    <div class="card-body">
+      <div class="two-col">
+        <div class="fml-box">
+          <div class="ftitle">Mômen & ngẫu lực</div>
+          <div class="frow">m<sub>O</sub>(F) = ±F·d = x·F<sub>y</sub> − y·F<sub>x</sub></div>
+          <div class="frow">Ngẫu lực (F, F'): M = ±F·d (không phụ thuộc tâm)</div>
+          <div class="frow">Hệ ngẫu lực phẳng: M = Σm<sub>k</sub></div>
+          <div class="frow">Dời lực: F<sub>A</sub> ~ (F<sub>B</sub>, m = m<sub>B</sub>(F<sub>A</sub>))</div>
+        </div>
+        <div class="fml-box">
+          <div class="ftitle">Thu gọn về tâm O</div>
+          <div class="frow">R'<sub>x</sub> = ΣF<sub>kx</sub> · R'<sub>y</sub> = ΣF<sub>ky</sub> (ngẫu lực không có mặt)</div>
+          <div class="frow">M<sub>O</sub> = Σm<sub>O</sub>(F<sub>k</sub>) + ΣM<sub>j</sub></div>
+          <div class="frow">R'=0, M<sub>O</sub>=0 → cân bằng · R'=0, M<sub>O</sub>≠0 → ngẫu lực</div>
+          <div class="frow">R'≠0 → hợp lực; đường tác dụng: x·R'<sub>y</sub> − y·R'<sub>x</sub> = M<sub>O</sub></div>
+        </div>
+      </div>
+      <div class="note-box">💡 Nhập giá trị <b>đại số</b>: hình chiếu theo chiều dương trục, mômen <b>dương khi ngược chiều kim đồng hồ</b>. Lực ghi dạng k√2 → mỗi hình chiếu có độ lớn k.</div>
+    </div>
+  </div>
+
+  <div id="content"></div>
+</main>
+
+<div class="sticky-nav">
+  <span>2.2 · Thu gọn hệ lực phẳng</span>
+  <div class="nav-btns">
+    <span id="nav-prog">0/0</span>
+    <button class="btn btn-sm btn-ghost" onclick="scrollNext()">▼ Câu chưa làm</button>
+    <button class="btn btn-sm btn-ghost" id="btn-nop" onclick="submitResult()">🔒 Nộp bài</button>
+    <a href="2.3_PHAN_LUC.html" class="btn btn-sm btn-ghost">Bài tiếp ›</a>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   2.2 — MÔMEN, NGẪU LỰC, THU GỌN HỆ LỰC PHẲNG
+   T: trắc nghiệm · A1 mômen 1 lực · A2 hệ ngẫu lực · A3 lưới ô vuông
+   A4 hệ lực phân bố · A5 cột chịu lực · B1–B3 · C1 nhận dạng · C2 tìm M
+   ================================================================ */
+window.__DATA = [];
+var FORMS = ['Hệ lực cân bằng (R\' = 0, M<sub>O</sub> = 0)', 'Một ngẫu lực (R\' = 0, M<sub>O</sub> ≠ 0)',
+  'Một hợp lực đi qua O (R\' ≠ 0, M<sub>O</sub> = 0)', 'Một hợp lực không đi qua O (R\' ≠ 0, M<sub>O</sub> ≠ 0)'];
+var EPS = 1e-9;
+function formOf(Rx, Ry, M) { var R0 = Math.hypot(Rx, Ry) < 1e-6, M0 = Math.abs(M) < 1e-6; return R0 ? (M0 ? 0 : 1) : (M0 ? 2 : 3); }
+function sgnCouple(M) { return M > 0 ? 'ngược chiều kim đồng hồ' : 'cùng chiều kim đồng hồ'; }
+
+/* ── LỰC TRÊN LƯỚI Ô VUÔNG ─────────────────────────────────────────
+   Lực: {i, j: nút lưới; dir: bội 45°; k: nguyên; diag: lực chéo (độ lớn k√2)}
+   Toạ độ so với O: x = (i − oi)·a, y = (j − oj)·a                        */
+var NX = 6, NY = 4;
+function magTxt(f) { return f.diag ? (f.k === 1 ? '√2' : f.k + '√2') : String(f.k); }
+function fComp(f) { var c = Math.round(cosd(f.dir)), s = Math.round(sind(f.dir)); return { Fx: f.k * c, Fy: f.k * s }; }
+function genGridForce(rng, used) {
+  for (var g = 0; g < 200; g++) {
+    var i = rint(rng, 0, NX), j = rint(rng, 0, NY), dir = rint(rng, 0, 7) * 45;
+    var di = Math.round(cosd(dir)), dj = Math.round(sind(dir));
+    if (i + di < 0 || i + di > NX || j + dj < 0 || j + dj > NY || used[i + ',' + j]) continue;
+    used[i + ',' + j] = 1;
+    return { i: i, j: j, dir: dir, k: rint(rng, 1, 5), diag: dir % 90 !== 0 };
+  }
+}
+function gridSolve(fs, cs, oi, oj, a) {
+  var Rx = 0, Ry = 0, M = 0;
+  fs.forEach(function (f) { var c = fComp(f), x = (f.i - oi) * a, y = (f.j - oj) * a; Rx += c.Fx; Ry += c.Fy; M += x * c.Fy - y * c.Fx; });
+  cs.forEach(function (c) { M += c.M; });
+  return { Rx: Rx, Ry: Ry, M: M };
+}
+/* Hình lưới: O tại nút (oi,oj); cs: ngẫu lực {ci,cj (tâm ô), M} */
+function gridFig(fs, cs, oi, oj, o) {
+  o = o || {};
+  var sz = 50, x0 = 40, y0 = 34, s = new Svg(x0 * 2 + NX * sz + 20, y0 * 2 + NY * sz + 10);
+  function P(i, j) { return [x0 + i * sz, y0 + (NY - j) * sz]; }
+  s.grid(x0, y0, NX, NY, sz);
+  var O = P(oi, oj);
+  s.arrow(O[0], O[1], O[0] + 44, O[1], { c: '#607D8B', w: 1.3, head: 7 }).arrow(O[0], O[1], O[0], O[1] - 44, { c: '#607D8B', w: 1.3, head: 7 });
+  s.text(O[0] + 50, O[1] + 1, 'x', { c: '#607D8B', size: 12, italic: true }).text(O[0] - 1, O[1] - 52, 'y', { c: '#607D8B', size: 12, italic: true });
+  s.circle(O[0], O[1], 3.5, { fill: COL.K }).text(O[0] - 11, O[1] + 12, o.oName || 'O', { size: 12 });
+  cs.forEach(function (c) {
+    var C = P(c.ci, c.cj);
+    s.couple(C[0], C[1], 14, c.M > 0, c.name, { lp: [C[0], C[1] - 25] });
+  });
+  fs.forEach(function (f, n) {
+    var A = P(f.i, f.j), di = Math.round(cosd(f.dir)), dj = Math.round(sind(f.dir)), B = P(f.i + di, f.j + dj);
+    s.arrow(A[0], A[1], A[0] + (B[0] - A[0]) * 0.92, A[1] + (B[1] - A[1]) * 0.92, { c: COL.F, w: 2.4 });
+    s.circle(A[0], A[1], 2.5, { fill: COL.F, c: COL.F });
+    var nx = -(B[1] - A[1]), ny = (B[0] - A[0]), L = Math.hypot(nx, ny);
+    s.text((A[0] + B[0]) / 2 + nx / L * 11, (A[1] + B[1]) / 2 + ny / L * 11, f.name || ('F_' + (n + 1)), { c: COL.F, size: 12 });
+  });
+  s.text(x0 + NX * sz, y0 + NY * sz + 18, 'cạnh ô = a', { c: '#78909C', size: 11, weight: 600, anchor: 'end' });
+  return s.out();
+}
+function gridHint(fs, oi, oj, a) {
+  return fs.map(function (f, n) {
+    var c = fComp(f), x = (f.i - oi) * a, y = (f.j - oj) * a;
+    return 'F<sub>' + (n + 1) + '</sub>: (x, y) = (' + fmt(x) + '; ' + fmt(y) + '), (F<sub>x</sub>, F<sub>y</sub>) = (' + fmt(c.Fx) + '; ' + fmt(c.Fy) + ') → m<sub>O</sub> = '
+      + fmtP(x) + '·' + fmtP(c.Fy) + ' − ' + fmtP(y) + '·' + fmtP(c.Fx) + ' = ?';
+  }).join('<br>');
+}
+function gridProb(fs, cs, a) {
+  return fs.map(function (f, n) { return 'F<sub>' + (n + 1) + '</sub> = <b>' + magTxt(f) + ' kN</b>'; }).join(', ')
+    + (cs.length ? ', ' + cs.map(function (c) { return c.name.replace('_', '<sub>') + '</sub> = <b>' + Math.abs(c.M) + ' kNm</b>'; }).join(', ') : '')
+    + ', a = <b>' + a + ' m</b>';
+}
+function askReduce(id, r) {
+  var h = makeQ(id + '-Rx', "R'<sub>x</sub>", r.Rx, 0.02, 'kN') + makeQ(id + '-Ry', "R'<sub>y</sub>", r.Ry, 0.02, 'kN')
+    + makeQ(id + '-M', 'M<sub>O</sub> (đại số)', r.M, 0.02, 'kNm');
+  return h;
+}
+
+/* ── CỘT AB CHỊU LỰC (thu gọn về chân cột A) ─────────────────────── */
+function genColumn(rng) {
+  var H = rint(rng, 4, 6), e = pick(rng, [-1, -0.5, 0.5, 1]), h2 = rint(rng, 2, H - 1), h3 = r1(rint(rng, 1, 2 * (H - 1)) / 2);
+  var F1 = rint(rng, 2, 8) * 50, F2 = rint(rng, 2, 10) * 50, F3 = rint(rng, 2, 8) * 50;
+  var d1 = pick(rng, [0, 180]), d2 = e < 0 ? 300 : 240, /* đuôi F2 hướng ra ngoài cột */ sx = pick(rng, [1, -1]), sy = pick(rng, [1, -1]), sl = pick(rng, [[4, 3], [3, 4]]);
+  var fs = [
+    { name: 'F_1', F: F1, x: 0, y: H, Fx: F1 * cosd(d1), Fy: 0, a: d1 },
+    { name: 'F_2', F: F2, x: e, y: h2, Fx: F2 * cosd(d2), Fy: F2 * sind(d2), a: d2 },
+    { name: 'F_3', F: F3, x: 0, y: h3, Fx: F3 * sx * sl[0] / 5, Fy: F3 * sy * sl[1] / 5, a: angDeg(sx * sl[0], sy * sl[1]), slope: sl }];
+  if (Math.abs(h3 - h2) < 0.6 && e === 0) fs[2].y = h3 = (h2 > 1 ? h2 - 1 : h2 + 1);
+  var Rx = 0, Ry = 0, M = 0;
+  fs.forEach(function (f) { Rx += f.Fx; Ry += f.Fy; M += f.x * f.Fy - f.y * f.Fx; });
+  return { H: H, e: e, fs: fs, Rx: Rx, Ry: Ry, M: M };
+}
+function columnFig(d) {
+  var sc = 36, s = new Svg(340, 90 + d.H * sc), ax = 170, ay = 40 + d.H * sc;
+  function P(x, y) { return [ax + x * sc, ay - y * sc]; }
+  s.line(ax, ay, ax, ay - d.H * sc, { c: COL.beam, w: 6 });
+  s.ground(ax - 30, ay + 3, ax + 30, ay + 3, 1);
+  var br = d.fs[1];
+  s.line(ax, ay - br.y * sc, P(br.x, br.y)[0], P(br.x, br.y)[1], { c: COL.beam, w: 4 });
+  s.text(ax + 12, ay - 8, 'A', { size: 12 }).text(ax + (d.fs[0].a === 0 ? 12 : -12), ay - d.H * sc - 10, 'B', { size: 12 });
+  d.fs.forEach(function (f) {
+    var p = P(f.x, f.y);
+    s.force(p[0], p[1], f.a, 62, f.name, { lp: null });
+    if (f.slope) {
+      var tx = p[0] - 62 * cosd(f.a), ty = p[1] + 62 * sind(f.a), u = [cosd(f.a), -sind(f.a)];
+      var Pp = [tx + 12 * u[0], ty + 12 * u[1]], Q = [tx + 42 * u[0], ty + 42 * u[1]];
+      s.line(Pp[0], Pp[1], Q[0], Pp[1], { c: '#78909C', w: 1 }).line(Q[0], Pp[1], Q[0], Q[1], { c: '#78909C', w: 1 });
+      s.text((Pp[0] + Q[0]) / 2, Pp[1] + (Q[1] > Pp[1] ? -7 : 8), String(f.slope[0]), { c: '#455A64', size: 10 });
+      s.text(Q[0] + (Q[0] > Pp[0] ? 7 : -7), (Pp[1] + Q[1]) / 2, String(f.slope[1]), { c: '#455A64', size: 10 });
+    }
+    if (f.name === 'F_2') s.angle(p[0], p[1], 22, 90, 90 + (f.a > 270 ? -30 : 30) * -1, '30°', { gap: 10 });
+  });
+  var ys = [ay].concat(d.fs.map(function (f) { return f.y; }).filter(function (v, i, a) { return a.indexOf(v) === i; }).sort(function (a, b) { return a - b; }).map(function (y) { return ay - y * sc; }));
+  var labs = []; for (var i = 1; i < ys.length; i++) labs.push(fmt((ys[i - 1] - ys[i]) / sc, 1) + 'm');
+  s.dimsV(ys, 40, labs);
+  s.dims([ax, P(br.x, 0)[0]].sort(function (a, b) { return a - b; }), ay + 34, [fmt(Math.abs(d.e), 1) + 'm']);
+  return s.out();
+}
+
+function build(stt) {
+  var h = '';
+
+  /* ── T ── */
+  var rt = seededRng(stt * 7 + 5101);
+  h += secLabel('help-circle', 'Nhóm T — Lý thuyết nhanh');
+  h += card({ id: 't', grp: 'T', badge: '📘 T', icon: 'help-circle', title: 'Trắc nghiệm — Ngẫu lực & thu gọn hệ lực',
+    qs: makeMCQ('t1', 'Mômen của ngẫu lực phẳng lấy đối với một điểm bất kỳ trong mặt phẳng tác dụng:',
+        ['Luôn bằng F·d, không phụ thuộc điểm lấy mômen', 'Phụ thuộc vào vị trí điểm lấy mômen', 'Luôn bằng 0', 'Bằng 2F·d'], 0,
+        'm<sub>O</sub>(F) + m<sub>O</sub>(F\') = ±F·d với mọi O — ngẫu lực chỉ có tác dụng làm quay.', rt)
+      + makeMCQ('t2', 'Khi chiếu một ngẫu lực lên một trục bất kỳ, tổng hình chiếu bằng:',
+        ['0', 'F', 'F·d', '2F'], 0, 'Hai lực song song, ngược chiều, cùng độ lớn → hình chiếu triệt tiêu. Vì vậy ngẫu lực không có mặt trong R\'.', rt)
+      + makeMCQ('t3', 'Dời lực F từ A song song đến B thì phải thêm:',
+        ['Một ngẫu lực có mômen bằng m<sub>B</sub>(F<sub>A</sub>)', 'Một ngẫu lực có mômen bằng m<sub>A</sub>(F<sub>A</sub>)', 'Một lực bằng −F tại A', 'Không cần thêm gì'], 0,
+        'Định lý dời lực song song: F<sub>A</sub> ~ (F<sub>B</sub>, m = m<sub>B</sub>(F<sub>A</sub>)).', rt)
+      + makeMCQ('t4', 'Khi đổi tâm thu gọn từ O sang A thì:',
+        ['R\' không đổi, M<sub>A</sub> = M<sub>O</sub> + m<sub>A</sub>(R\'<sub>O</sub>)', 'Cả R\' và M đều không đổi', 'R\' thay đổi, M không đổi', 'Cả R\' và M đều thay đổi tuỳ ý'], 0,
+        'Véctơ chính là bất biến; mômen chính phụ thuộc tâm thu gọn.', rt)
+  });
+
+  /* ── A ── */
+  h += secLabel('player-play', 'Nhóm A — Bài hướng dẫn đầy đủ');
+
+  /* A1: mômen của 1 lực đối với O */
+  (function () {
+    var rng = seededRng(stt * 11 + 5201), a = pick(rng, [0.5, 1]), oi = rint(rng, 1, 3), oj = rint(rng, 1, 2), f, g = 0;
+    do { f = genGridForce(rng, {}); } while (((f.i === oi && f.j === oj) || gridSolve([f], [], oi, oj, a).M === 0) && g++ < 100);
+    var r = gridSolve([f], [], oi, oj, a), c = fComp(f), x = (f.i - oi) * a, y = (f.j - oj) * a;
+    window.__DATA.push({ id: 'a1', f: f, oi: oi, oj: oj, a: a, r: r });
+    h += card({ id: 'a1', grp: 'A', badge: '📐 A1', title: 'Bài A1 — Mômen của lực đối với một điểm',
+      prob: '🏗️ <b>Đề bài</b> (STT <b>' + stt + '</b>): Lực F<sub>1</sub> = <b>' + magTxt(f) + ' kN</b> đặt tại nút lưới như hình, lưới ô vuông cạnh a = <b>' + a + ' m</b>. Xác định hình chiếu của lực và mômen của lực đối với O.',
+      fig: gridFig([f], [], oi, oj),
+      fml: frow('m<sub>O</sub>(F) = x·F<sub>y</sub> − y·F<sub>x</sub> (x, y: toạ độ điểm đặt so với O)') + frow('Kiểm tra: |m<sub>O</sub>| = F·d, d = khoảng cách từ O đến đường tác dụng'),
+      hint: 'x = ' + fmt(x) + ' m, y = ' + fmt(y) + ' m<br>m<sub>O</sub> = ' + fmtP(x) + '·F<sub>y</sub> − ' + fmtP(y) + '·F<sub>x</sub> = ?',
+      qs: makeQ('a1-Fx', 'F<sub>x</sub>', c.Fx, 0.02, 'kN') + makeQ('a1-Fy', 'F<sub>y</sub>', c.Fy, 0.02, 'kN') + makeQ('a1-M', 'm<sub>O</sub>(F<sub>1</sub>)', r.M, 0.02, 'kNm') });
+  })();
+
+  /* A2: hệ ngẫu lực trên dầm */
+  (function () {
+    var rng = seededRng(stt * 13 + 5203), L = 8, P1 = rint(rng, 2, 8) * 50, P3 = rint(rng, 2, 8) * 50, m2 = rint(rng, 2, 12) * 50 * pick(rng, [1, -1]);
+    var x1 = rint(rng, 0, 1), d1 = rint(rng, 2, 3), up1 = rng() < 0.5;  /* cặp 1: lực đứng tại x1 và x1+d1 (≤ 4 m) */
+    var x3 = 5, d3 = rint(rng, 2, 3), th = pick(rng, [30, 45, 60]), up3 = rng() < 0.5;
+    var m1 = P1 * d1 * (up1 ? -1 : 1);              /* lực lên tại x1, xuống tại x1+d1 → quay CW */
+    var a3 = up3 ? th : 180 + th;                   /* lực tại x3 hướng a3, lực tại x3+d3 hướng a3+180 */
+    var m3 = x3 * P3 * sind(a3) + (x3 + d3) * (-P3 * sind(a3));
+    var M = m1 + m2 + m3;
+    window.__DATA.push({ id: 'a2', m1: m1, m2: m2, m3: m3, M: M });
+    var sc = 40, s = new Svg(420, 205), bx = 50, by = 100;
+    s.line(bx, by, bx + L * sc, by, { c: COL.beam, w: 6 });
+    s.text(bx - 12, by, 'A', { size: 12 }).text(bx + L * sc + 12, by, 'B', { size: 12 });
+    s.force(bx + x1 * sc, by, up1 ? 90 : 270, 50, 'F_1', {});
+    s.force(bx + (x1 + d1) * sc, by, up1 ? 270 : 90, 50, "F'_1", {});
+    var xm = (x1 + d1 + x3) / 2;  /* ngẫu lực m2 đặt giữa hai cặp lực */
+    s.couple(bx + xm * sc, by, 16, m2 > 0, 'm_2', { lp: [bx + xm * sc, by - 30] });
+    s.force(bx + x3 * sc, by, a3, 55, 'F_3', {});
+    s.force(bx + (x3 + d3) * sc, by, a3 + 180, 55, "F'_3", {});
+    var marks = [0, x1, x1 + d1, x3, x3 + d3, L].filter(function (v, i, a) { return a.indexOf(v) === i; }).sort(function (p, q) { return p - q; });
+    s.dims(marks.map(function (v) { return bx + v * sc; }), by + 84, marks.slice(1).map(function (v, i) { return (v - marks[i]) + 'm'; }));
+    s.angle(bx + x3 * sc, by, 22, up3 ? 180 : 0, up3 ? 180 + th : th, th + '°', { gap: 11 });
+    h += card({ id: 'a2', grp: 'A', badge: '📐 A2', title: 'Bài A2 — Thu gọn hệ ngẫu lực trên dầm AB',
+      prob: '🏗️ <b>Đề bài</b> (STT <b>' + stt + '</b>): Dầm AB dài ' + L + ' m chịu ba ngẫu lực: (F<sub>1</sub>, F\'<sub>1</sub>) với F<sub>1</sub> = <b>' + P1 + ' N</b>; ngẫu lực m<sub>2</sub> = <b>' + Math.abs(m2) + ' Nm</b> ('
+        + sgnCouple(m2) + '); (F<sub>3</sub>, F\'<sub>3</sub>) với F<sub>3</sub> = <b>' + P3 + ' N</b> nghiêng ' + th + '° so với trục dầm. Xác định ngẫu lực tổng hợp.',
+      fig: s.out(),
+      fml: frow('Ngẫu lực (F, F\'): m = ±F·d, d = khoảng cách giữa hai đường tác dụng') + frow('Lực nghiêng góc θ với dầm, hai điểm đặt cách nhau d<sub>0</sub> → d = d<sub>0</sub>·sin θ') + frow('M = m<sub>1</sub> + m<sub>2</sub> + m<sub>3</sub>'),
+      hint: 'm<sub>1</sub> = ±' + P1 + '·' + d1 + ' = ? · m<sub>2</sub> = ' + fmt(m2, 0) + ' · m<sub>3</sub> = ±' + P3 + '·' + d3 + '·sin' + th + '° = ?<br>Dấu: ngược chiều kim đồng hồ (+), cùng chiều (−)',
+      qs: makeQ('a2-m1', 'm<sub>1</sub> (đại số)', m1, 0.5, 'Nm') + makeQ('a2-m3', 'm<sub>3</sub> (đại số)', m3, 0.5, 'Nm') + makeQ('a2-M', 'M = Σm<sub>k</sub>', M, 0.5, 'Nm') });
+  })();
+
+  /* A3: thu gọn hệ lực trên lưới về O */
+  (function () {
+    var rng = seededRng(stt * 17 + 5207), a, oi, oj, fs, cs, r, g = 0;
+    do {
+      a = pick(rng, [0.5, 1, 2]); oi = rint(rng, 0, 3); oj = rint(rng, 0, 2);
+      var used = {}; used[oi + ',' + oj] = 1;
+      fs = [genGridForce(rng, used), genGridForce(rng, used), genGridForce(rng, used)];
+      cs = [{ ci: rint(rng, 0, NX - 1) + 0.5, cj: rint(rng, 0, NY - 1) + 0.5, M: rint(rng, 1, 6) * pick(rng, [1, -1]), name: 'M_1' }];
+      r = gridSolve(fs, cs, oi, oj, a);
+    } while ((formOf(r.Rx, r.Ry, r.M) !== 3 || Math.abs(r.Ry) < EPS) && g++ < 200);
+    var x0 = r.M / r.Ry;
+    window.__DATA.push({ id: 'a3', fs: fs, cs: cs, oi: oi, oj: oj, a: a, r: r });
+    h += card({ id: 'a3', grp: 'A', badge: '📐 A3', title: 'Bài A3 — Thu gọn hệ lực phẳng về tâm O · Dạng tối giản',
+      prob: '🏗️ <b>Đề bài</b> (STT <b>' + stt + '</b>): Hệ lực phẳng đặt tại các đỉnh lưới ô vuông như hình: ' + gridProb(fs, cs, a)
+        + '. a) Thu gọn hệ lực về O. b) Xác định dạng tối giản. c) Tìm giao điểm của đường tác dụng hợp lực với trục Ox.',
+      fig: gridFig(fs, cs, oi, oj),
+      fml: frow("R'<sub>x</sub> = ΣF<sub>kx</sub> · R'<sub>y</sub> = ΣF<sub>ky</sub> · M<sub>O</sub> = Σ(x<sub>k</sub>F<sub>ky</sub> − y<sub>k</sub>F<sub>kx</sub>) + M<sub>1</sub>")
+        + frow("Đường tác dụng hợp lực: x·R'<sub>y</sub> − y·R'<sub>x</sub> = M<sub>O</sub> → cắt Ox (y = 0) tại x = M<sub>O</sub>/R'<sub>y</sub>"),
+      hint: gridHint(fs, oi, oj, a) + '<br>M<sub>1</sub> = ' + fmt(cs[0].M) + ' kNm (' + sgnCouple(cs[0].M) + ')',
+      qs: askReduce('a3', r) + makeMCQ('a3f', 'Dạng tối giản của hệ lực:', FORMS, formOf(r.Rx, r.Ry, r.M), 'R\' ≠ 0 và M<sub>O</sub> ≠ 0 → hệ có hợp lực, đường tác dụng không đi qua O.', null)
+        + makeQ('a3-x0', 'Giao điểm với Ox: x = M<sub>O</sub>/R\'<sub>y</sub>', x0, 0.02, 'm') });
+  })();
+
+  /* A4: hệ lực phân bố → hợp lực */
+  (function () {
+    var rng = seededRng(stt * 19 + 5209), q1 = rint(rng, 2, 8), L1 = rint(rng, 2, 6), q2 = rint(rng, 2, 9), L2 = rint(rng, 3, 6), maxRight = rng() < 0.5;
+    var Q1 = q1 * L1, Q2 = q2 * L2 / 2, x2 = maxRight ? 2 * L2 / 3 : L2 / 3;
+    window.__DATA.push({ id: 'a4', Q1: Q1, Q2: Q2, x2: x2 });
+    var sc = 30, s1 = new Svg(240, 150), s2 = new Svg(240, 150);
+    s1.line(30, 90, 30 + L1 * sc, 90, { c: COL.beam, w: 6 }).distLoad(30, 30 + L1 * sc, 87, 34, 34, 'q_1 = ' + q1 + ' kN/m').dims([30, 30 + L1 * sc], 118, [L1 + 'm']).text(20, 90, 'A', { size: 12, anchor: 'end' });
+    s2.line(30, 90, 30 + L2 * sc, 90, { c: COL.beam, w: 6 }).distLoad(30, 30 + L2 * sc, 87, maxRight ? 0 : 48, maxRight ? 48 : 0, 'q_max = ' + q2 + ' kN/m').dims([30, 30 + L2 * sc], 118, [L2 + 'm']).text(20, 90, 'C', { size: 12, anchor: 'end' });
+    h += card({ id: 'a4', grp: 'A', badge: '📐 A4', title: 'Bài A4 — Thu gọn hệ lực phân bố về hợp lực',
+      prob: '🏗️ <b>Đề bài</b> (STT <b>' + stt + '</b>): (a) Tải phân bố đều q<sub>1</sub> = <b>' + q1 + ' kN/m</b> trên đoạn dài <b>' + L1 + ' m</b>; (b) tải phân bố tam giác q<sub>max</sub> = <b>' + q2 + ' kN/m</b> trên đoạn dài <b>' + L2
+        + ' m</b>, đạt cực đại ở đầu ' + (maxRight ? 'phải' : 'trái (tại C)') + '. Xác định độ lớn và điểm đặt các hợp lực.',
+      fig: '<div class="fig-row">' + s1.out() + s2.out() + '</div>',
+      fml: frow('Phân bố đều: Q = q·L, đặt tại giữa đoạn') + frow('Phân bố tam giác: Q = ½·q<sub>max</sub>·L, đặt tại trọng tâm tam giác — cách đầu có q<sub>max</sub> một đoạn L/3'),
+      hint: 'Q<sub>1</sub> = ' + q1 + '·' + L1 + ' = ? · Q<sub>2</sub> = ½·' + q2 + '·' + L2 + ' = ?<br>Khoảng cách từ C đến Q<sub>2</sub> = ' + (maxRight ? '2L/3' : 'L/3') + ' = ?',
+      qs: makeQ('a4-Q1', 'Q<sub>1</sub>', Q1, 0.02, 'kN') + makeQ('a4-Q2', 'Q<sub>2</sub>', Q2, 0.02, 'kN') + makeQ('a4-x2', 'Khoảng cách từ C đến điểm đặt Q<sub>2</sub>', x2, 0.02, 'm') });
+  })();
+
+  /* A5: cột AB — thu gọn về chân cột A */
+  (function () {
+    var rng = seededRng(stt * 23 + 5211), d = genColumn(rng);
+    window.__DATA.push({ id: 'a5', d: d });
+    var f = d.fs;
+    h += card({ id: 'a5', grp: 'A', badge: '📐 A5', title: 'Bài A5 — Thu gọn hệ lực tác dụng lên cột về chân cột A',
+      prob: '🏗️ <b>Đề bài</b> (STT <b>' + stt + '</b>): Cột AB cao ' + d.H + ' m chịu ba lực F<sub>1</sub> = <b>' + f[0].F + ' N</b>, F<sub>2</sub> = <b>' + f[1].F + ' N</b> (đặt ở đầu công-xôn, nghiêng 30° so với phương đứng), F<sub>3</sub> = <b>' + f[2].F
+        + ' N</b> (phương theo tam giác ' + f[2].slope[0] + '-' + f[2].slope[1] + '-5). Thu gọn hệ lực về A: tìm lực R\'<sub>A</sub> và ngẫu lực M<sub>A</sub>. Trục Ax nằm ngang sang phải, Ay thẳng đứng lên trên.',
+      fig: columnFig(d),
+      fml: frow("R'<sub>x</sub> = ΣF<sub>kx</sub> · R'<sub>y</sub> = ΣF<sub>ky</sub> · M<sub>A</sub> = Σ(x<sub>k</sub>F<sub>ky</sub> − y<sub>k</sub>F<sub>kx</sub>)"),
+      hint: f.map(function (F, n) { return 'F<sub>' + (n + 1) + '</sub>: (x, y) = (' + fmt(F.x) + '; ' + fmt(F.y) + '), (F<sub>x</sub>, F<sub>y</sub>) = (' + fmt(F.Fx) + '; ' + fmt(F.Fy) + ')'; }).join('<br>'),
+      qs: makeQ('a5-Rx', "R'<sub>x</sub>", d.Rx, 0.5, 'N') + makeQ('a5-Ry', "R'<sub>y</sub>", d.Ry, 0.5, 'N') + makeQ('a5-R', "Độ lớn R'", Math.hypot(d.Rx, d.Ry), 0.5, 'N') + makeQ('a5-M', 'M<sub>A</sub> (đại số)', d.M, 0.5, 'Nm') });
+  })();
+
+  /* ── B ── */
+  h += secLabel('pencil', 'Nhóm B — Có công thức · Tự thay số');
+  (function () {
+    var rng = seededRng(stt * 29 + 6101), a, oi, oj, fs, cs, r, g = 0;
+    do {
+      a = pick(rng, [0.5, 1, 2]); oi = rint(rng, 0, 3); oj = rint(rng, 0, 2);
+      var used = {}; used[oi + ',' + oj] = 1;
+      fs = [genGridForce(rng, used), genGridForce(rng, used), genGridForce(rng, used), genGridForce(rng, used)];
+      cs = [{ ci: rint(rng, 0, NX - 1) + 0.5, cj: rint(rng, 0, NY - 1) + 0.5, M: rint(rng, 1, 6) * pick(rng, [1, -1]), name: 'M_1' }];
+      r = gridSolve(fs, cs, oi, oj, a);
+    } while ((formOf(r.Rx, r.Ry, r.M) !== 3 || Math.abs(r.Rx) < EPS) && g++ < 200);
+    window.__DATA.push({ id: 'b1', fs: fs, cs: cs, oi: oi, oj: oj, a: a, r: r });
+    h += card({ id: 'b1', grp: 'B', badge: '✏️ B1', title: 'Bài B1 — Thu gọn hệ 4 lực và 1 ngẫu lực về O',
+      prob: '🏗️ <b>Đề bài</b>: ' + gridProb(fs, cs, a) + '. Thu gọn về O, tìm giao điểm đường tác dụng hợp lực với trục Oy.',
+      fig: gridFig(fs, cs, oi, oj),
+      fml: frow("M<sub>O</sub> = Σ(x<sub>k</sub>F<sub>ky</sub> − y<sub>k</sub>F<sub>kx</sub>) + ΣM<sub>j</sub> · Cắt Oy (x = 0): y = −M<sub>O</sub>/R'<sub>x</sub>"),
+      qs: askReduce('b1', r) + makeQ('b1-y0', 'Giao điểm với Oy: y', -r.M / r.Rx, 0.02, 'm') });
+  })();
+  (function () {
+    var rng = seededRng(stt * 31 + 6103), d = genColumn(rng);
+    window.__DATA.push({ id: 'b2', d: d });
+    var f = d.fs;
+    h += card({ id: 'b2', grp: 'B', badge: '✏️ B2', title: 'Bài B2 — Thu gọn hệ lực trên cột về chân cột',
+      prob: '🏗️ <b>Đề bài</b>: Cột cao ' + d.H + ' m: F<sub>1</sub> = <b>' + f[0].F + ' N</b>, F<sub>2</sub> = <b>' + f[1].F + ' N</b> (nghiêng 30° so với phương đứng), F<sub>3</sub> = <b>' + f[2].F + ' N</b>. Thu gọn về A.',
+      fig: columnFig(d),
+      fml: frow("R'<sub>x</sub> = ΣF<sub>kx</sub> · R'<sub>y</sub> = ΣF<sub>ky</sub> · M<sub>A</sub> = Σ(x<sub>k</sub>F<sub>ky</sub> − y<sub>k</sub>F<sub>kx</sub>)"),
+      qs: makeQ('b2-Rx', "R'<sub>x</sub>", d.Rx, 0.5, 'N') + makeQ('b2-Ry', "R'<sub>y</sub>", d.Ry, 0.5, 'N') + makeQ('b2-M', 'M<sub>A</sub> (đại số)', d.M, 0.5, 'Nm') });
+  })();
+  (function () {
+    var rng = seededRng(stt * 37 + 6107), a = 1, f, bi, bj, g = 0, used = {};
+    do { used = {}; f = genGridForce(rng, used); bi = rint(rng, 0, NX); bj = rint(rng, 0, NY); } while (((bi === f.i && bj === f.j) || gridSolve([f], [], bi, bj, a).M === 0) && g++ < 100);
+    var r = gridSolve([f], [], bi, bj, a), c = fComp(f);
+    window.__DATA.push({ id: 'b3', f: f, bi: bi, bj: bj, r: r });
+    h += card({ id: 'b3', grp: 'B', badge: '✏️ B3', title: 'Bài B3 — Dời lực song song về điểm B',
+      prob: '🏗️ <b>Đề bài</b>: Lực F<sub>1</sub> = <b>' + magTxt(f) + ' kN</b> (lưới cạnh a = 1 m). Dời lực F<sub>1</sub> song song về điểm B. Xác định lực tại B và ngẫu lực phụ thêm.',
+      fig: gridFig([f], [], bi, bj, { oName: 'B' }),
+      fml: frow('F<sub>A</sub> ~ (F<sub>B</sub>, m) với F<sub>B</sub> = F<sub>A</sub> và m = m<sub>B</sub>(F<sub>A</sub>) = x·F<sub>y</sub> − y·F<sub>x</sub> (toạ độ so với B)'),
+      qs: makeQ('b3-Fx', 'F<sub>Bx</sub>', c.Fx, 0.02, 'kN') + makeQ('b3-Fy', 'F<sub>By</sub>', c.Fy, 0.02, 'kN') + makeQ('b3-m', 'm = m<sub>B</sub>(F<sub>1</sub>)', r.M, 0.02, 'kNm') });
+  })();
+
+  /* ── C ── */
+  h += secLabel('brain', 'Nhóm C — Tự nhận biết · Chỉ cho đầu bài');
+  /* C1: hai cặp lực song song ngược chiều → cân bằng hoặc ngẫu lực */
+  (function () {
+    var rng = seededRng(stt * 41 + 6301), a = pick(rng, [0.5, 1]), oi = rint(rng, 1, 3), oj = rint(rng, 1, 2), fs, r, g = 0, want = rng() < 0.35 ? 0 : 1;
+    do {
+      var used = {}; used[oi + ',' + oj] = 1;
+      var f1 = genGridForce(rng, used), f3 = genGridForce(rng, used);
+      /* lực đối: cùng độ lớn, ngược chiều, đặt tại nút khác */
+      var f2 = null, f4 = null, t = 0;
+      while ((!f2 || !f4) && t++ < 300) {
+        var c = genGridForce(rng, {});
+        if (used[c.i + ',' + c.j]) continue;
+        if (!f2) { c.dir = norm360(f1.dir + 180); c.k = f1.k; c.diag = f1.diag; var di = Math.round(cosd(c.dir)), dj = Math.round(sind(c.dir));
+          if (c.i + di < 0 || c.i + di > NX || c.j + dj < 0 || c.j + dj > NY) continue; used[c.i + ',' + c.j] = 1; f2 = c; continue; }
+        c.dir = norm360(f3.dir + 180); c.k = f3.k; c.diag = f3.diag; var di2 = Math.round(cosd(c.dir)), dj2 = Math.round(sind(c.dir));
+        if (c.i + di2 < 0 || c.i + di2 > NX || c.j + dj2 < 0 || c.j + dj2 > NY) continue; used[c.i + ',' + c.j] = 1; f4 = c;
+      }
+      fs = [f1, f2, f3, f4];
+      r = f2 && f4 ? gridSolve(fs, [], oi, oj, a) : { Rx: 1, Ry: 1, M: 1 };
+    } while (formOf(r.Rx, r.Ry, r.M) !== want && g++ < 400);
+    window.__DATA.push({ id: 'c1', fs: fs, oi: oi, oj: oj, a: a, r: r, want: want });
+    h += card({ id: 'c1', grp: 'C', badge: '🧠 C1', icon: 'brain', title: 'Bài C1 — Nhận dạng dạng tối giản',
+      prob: '🏗️ <b>Đề bài</b>: Hệ bốn lực trên lưới: ' + gridProb(fs, [], a) + '. Thu gọn hệ lực về O và cho biết hệ lực tương đương với gì.',
+      fig: gridFig(fs, [], oi, oj),
+      qs: askReduce('c1', r) + makeMCQ('c1f', 'Dạng tối giản của hệ lực:', FORMS, formOf(r.Rx, r.Ry, r.M), 'Hệ gồm các cặp lực song song ngược chiều cùng độ lớn → R\' = 0; kết luận dựa vào M<sub>O</sub>.', null) });
+  })();
+  /* C2: tìm ngẫu lực M1 để hệ có hợp lực đi qua O */
+  (function () {
+    var rng = seededRng(stt * 43 + 6303), a, oi, oj, fs, r, g = 0;
+    do {
+      a = pick(rng, [0.5, 1, 2]); oi = rint(rng, 0, 3); oj = rint(rng, 0, 2);
+      var used = {}; used[oi + ',' + oj] = 1;
+      fs = [genGridForce(rng, used), genGridForce(rng, used), genGridForce(rng, used)];
+      r = gridSolve(fs, [], oi, oj, a);
+    } while ((Math.hypot(r.Rx, r.Ry) < EPS || Math.abs(r.M) < EPS) && g++ < 200);
+    var M1 = -r.M, cs = [{ ci: rint(rng, 0, NX - 1) + 0.5, cj: rint(rng, 0, NY - 1) + 0.5, M: M1, name: 'M_1 ?' }];
+    window.__DATA.push({ id: 'c2', fs: fs, oi: oi, oj: oj, a: a, r: r, M1: M1 });
+    h += card({ id: 'c2', grp: 'C', badge: '🧠 C2', icon: 'brain', title: 'Bài C2 — Chọn ngẫu lực để hợp lực đi qua O',
+      prob: '🏗️ <b>Đề bài</b>: Hệ lực ' + gridProb(fs, [], a) + ' và ngẫu lực M<sub>1</sub> chưa biết (chiều vẽ trên hình chỉ minh hoạ). Tìm giá trị đại số M<sub>1</sub> để hệ lực có hợp lực đi qua O, và độ lớn hợp lực đó.',
+      fig: gridFig(fs, [{ ci: cs[0].ci, cj: cs[0].cj, M: 1, name: 'M_1 ?' }], oi, oj),
+      qs: makeQ('c2-M1', 'M<sub>1</sub> (đại số)', M1, 0.02, 'kNm') + makeQ('c2-R', 'Độ lớn hợp lực R', Math.hypot(r.Rx, r.Ry), 0.02, 'kN') });
+  })();
+
+  return h;
+}
+
+window.onload = function () {
+  runPage({ chapter: 'c2', id: 'C2-22-ThuGon', progKey: 'chcs_prog_c2_22', code: '2.2' }, build);
+};
+</script>
+</body>
+</html>

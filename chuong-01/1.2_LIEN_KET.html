@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1.2 — Liên Kết & Phản Lực Liên Kết</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="stylesheet" href="../assets/css/app.css?v=1">
+<script src="../config.js"></script>
+<script src="../assets/js/engine.js?v=1"></script>
+<script src="../assets/js/draw.js?v=1"></script>
+<script src="../assets/js/supports.js?v=1"></script>
+<style>
+.sup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.sup-cell{border:1px solid var(--brd);border-radius:10px;padding:8px 10px;background:#FAFCFF;display:flex;flex-direction:column;gap:6px}
+.sup-cell svg{width:100%;max-width:160px;height:auto;margin:0 auto;display:block}
+.sup-cell .ans-row{padding:6px 8px;flex-wrap:nowrap;gap:6px}
+.sup-cell .ans-label{min-width:0;font-size:12px;white-space:nowrap}
+.sup-cell .ans-inp{width:56px}
+.sup-cell .ans-unit{display:none}
+</style>
+</head>
+<body>
+<header class="hdr"><div class="hdr-in">
+  <a href="index_C1.html" class="back-btn"><i class="ti ti-arrow-left"></i> Chương 1</a>
+  <div class="hdr-title"><h1>1.2 — Liên Kết & Phản Lực Liên Kết</h1><p>Nguyên lý giải phóng liên kết · Các liên kết phẳng thường gặp · Đếm ẩn & phân loại</p></div>
+  <div class="hdr-right"><div class="hdr-prog" id="hdr-prog">0 / 0</div><div class="sv-badge" id="sv-badge">–</div></div>
+</div></header>
+
+<main>
+  <div class="preview-bar hidden" id="preview-bar">👀 Chế độ xem thử — chưa đăng nhập nên không nộp được bài. Về <a href="../index.html">Trang chủ</a> để nhập thông tin.</div>
+  <div class="prog-wrap">
+    <div class="prog-top"><span><i class="ti ti-target" style="vertical-align:-2px;margin-right:4px"></i>Tiến độ 1.2 — Liên kết</span><span id="prog-text">–</span></div>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+  <div class="sv-infobar">
+    <i class="ti ti-id-badge-2" style="font-size:20px;opacity:.8"></i>
+    <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700" id="sv-display">Đang tải...</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.7)">Câu hỏi và hình vẽ sinh riêng theo STT</div></div>
+    <div class="sv-chip" id="sv-chip">–</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd"><i class="ti ti-book"></i><div><h2>Tóm tắt — Liên kết, phản lực liên kết</h2></div><span class="cbadge">LÝ THUYẾT</span></div>
+    <div class="card-body">
+      <div class="two-col">
+        <div class="fml-box">
+          <div class="ftitle">Khái niệm</div>
+          <div class="frow"><em>Liên kết</em>: điều kiện ràng buộc cản trở dịch chuyển của vật</div>
+          <div class="frow"><em>Phản lực liên kết</em>: lực do vật gây liên kết tác dụng lên vật khảo sát, ngược chiều với chuyển động bị cản</div>
+          <div class="frow"><em>Nguyên lý giải phóng liên kết</em> (Lagrange): vật chịu liên kết cân bằng ~ vật tự do cân bằng khi thay liên kết bằng phản lực</div>
+        </div>
+        <div class="fml-box">
+          <div class="ftitle">Số ẩn phản lực (N)</div>
+          <div class="frow">Tựa, dây, thanh, gối di động: 1 ẩn</div>
+          <div class="frow">Gối cố định, bản lề, ngàm trượt: 2 ẩn</div>
+          <div class="frow">Ngàm phẳng: 3 ẩn (X, Y, M)</div>
+          <div class="frow">Vật phẳng: N = 3 & hợp lý → tĩnh định · N &gt; 3 → siêu tĩnh bậc N − 3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="content"></div>
+</main>
+
+<div class="sticky-nav">
+  <span>1.2 · Liên kết & phản lực</span>
+  <div class="nav-btns">
+    <span id="nav-prog">0/0</span>
+    <button class="btn btn-sm btn-ghost" onclick="scrollNext()">▼ Câu chưa làm</button>
+    <button class="btn btn-sm btn-ghost" id="btn-nop" onclick="submitResult()">🔒 Nộp bài</button>
+    <a href="../chuong-02/index_C2.html" class="btn btn-sm btn-ghost">Chương 2 ›</a>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   1.2 — LIÊN KẾT & PHẢN LỰC LIÊN KẾT
+   A: số ẩn của 8 loại liên kết (điền số) + phương chiều phản lực (MCQ)
+   B: 6 phương án liên kết thanh AB — đếm N và phân loại (MCQ)
+   C: trắc nghiệm khái niệm (giải phóng liên kết, liên kết một phía)
+   ================================================================ */
+window.__DATA = [];
+
+function build(stt) {
+  var h = '', rng = seededRng(stt * 7 + 1301);
+
+  /* ── A ── */
+  h += secLabel('player-play', 'Nhóm A — Nhận biết các liên kết phẳng');
+  var order = shuffle(rng, SUP_TYPES.map(function (_, i) { return i; })), cells = '';
+  order.forEach(function (i) {
+    var t = SUP_TYPES[i];
+    cells += '<div class="sup-cell">' + supIcon(t) + '<div style="font-size:12px;font-weight:700;color:var(--Pdk);text-align:center">' + t.name + '</div>'
+      + makeQ('a-n-' + t.id, 'Số ẩn phản lực', t.n, 0, '') + '</div>';
+  });
+  h += card({ id: 'a1', grp: 'A', badge: '📐 A1', icon: 'player-play', title: 'Bài A1 — Mỗi liên kết có bao nhiêu thành phần phản lực?',
+    prob: 'Với mỗi liên kết dưới đây, nhập số thành phần phản lực (số ẩn) mà liên kết tạo ra khi giải phóng liên kết.',
+    qs: '<div class="sup-grid">' + cells + '</div>' });
+
+  var mq = '';
+  shuffle(rng, order).slice(0, 5).forEach(function (i, k) {
+    var t = SUP_TYPES[i], others = shuffle(rng, SUP_TYPES.filter(function (u) { return u.react !== t.react; })).slice(0, 3);
+    window.__DATA.push({ id: 'a2-' + k, type: t.id });
+    mq += '<div class="fig" style="max-width:220px;margin:0 auto">' + supIcon(t) + '</div>'
+      + makeMCQ('a2-' + k, 'Phản lực của <b>' + t.name.toLowerCase() + '</b> (hình trên) là:', [t.react].concat(others.map(function (u) { return u.react; })), 0,
+        t.name + ': ' + t.react + '.', rng);
+  });
+  h += card({ id: 'a2', grp: 'A', badge: '📐 A2', icon: 'player-play', title: 'Bài A2 — Phương, chiều của phản lực liên kết', qs: mq });
+
+  /* ── B ── */
+  h += secLabel('pencil', 'Nhóm B — Đếm ẩn phản lực & phân loại cân bằng');
+  var pool = shuffle(rng, CONFIGS), pickd = [], seen = {};
+  /* Chọn 6 phương án: có đủ các loại (tĩnh định, siêu tĩnh, không phù hợp, thiếu) */
+  [0, 1, 2, 3, 4].forEach(function (cl) { for (var i = 0; i < pool.length; i++) if (pool[i].cls === (cl === 3 && rng() < 0.5 ? 2 : cl) && !seen[pool[i].k]) { pickd.push(pool[i]); seen[pool[i].k] = 1; break; } });
+  for (var i = 0; pickd.length < 6 && i < pool.length; i++) if (!seen[pool[i].k]) { pickd.push(pool[i]); seen[pool[i].k] = 1; }
+  pickd = shuffle(rng, pickd);
+  pickd.forEach(function (c, k) {
+    var id = 'b' + (k + 1);
+    window.__DATA.push({ id: id, cfg: c.k, N: c.N, cls: c.cls });
+    h += card({ id: id, grp: 'B', badge: '✏️ ' + id.toUpperCase(), title: 'Bài ' + id.toUpperCase() + ' — ' + c.txt,
+      fig: cfgFig(c, { loads: true }),
+      qs: makeQ(id + '-N', 'Tổng số ẩn phản lực N', c.N, 0, '')
+        + makeMCQ(id + '-c', 'Thanh AB (bỏ qua trọng lượng, chịu F và M bất kỳ) ở trạng thái:', CLS_TXT, c.cls,
+          'N = ' + c.N + ' → ' + CLS_TXT[c.cls] + (c.cls === 1 ? ', bậc siêu tĩnh N − 3 = ' + (c.N - 3) : '') + (c.one ? ' (lưu ý: dây là liên kết một phía)' : '') + '.', null) });
+  });
+
+  /* ── C ── */
+  h += secLabel('brain', 'Nhóm C — Khái niệm liên kết');
+  var rc = seededRng(stt * 11 + 1303);
+  h += card({ id: 'c', grp: 'C', badge: '🧠 C', icon: 'brain', title: 'Trắc nghiệm — Giải phóng liên kết',
+    qs: makeMCQ('c1', 'Theo nguyên lý giải phóng liên kết, vật rắn chịu liên kết cân bằng có thể xem là:', ['Vật rắn tự do cân bằng dưới tác dụng của các lực hoạt động và các phản lực liên kết', 'Vật rắn tự do không chịu lực', 'Vật biến dạng', 'Vật chỉ chịu các phản lực liên kết'], 0,
+        'Thay tác dụng của liên kết bằng phản lực liên kết tương ứng → vật tự do cân bằng.', rc)
+      + makeMCQ('c2', 'Phản lực liên kết có chiều:', ['Ngược với chiều chuyển động mà liên kết cản trở', 'Cùng chiều chuyển động bị cản', 'Luôn hướng thẳng đứng lên trên', 'Luôn hướng vào tâm vật'], 0,
+        'Liên kết cản trở chuyển động nào thì phản lực ngược chiều với chuyển động đó.', rc)
+      + makeMCQ('c3', 'Dựa vào đặc điểm của liên kết, ta <b>chỉ</b> xác định trước được:', ['Số thành phần và phương của phản lực (chiều, độ lớn tìm từ PTCB)', 'Độ lớn của phản lực', 'Cả phương, chiều và độ lớn', 'Chiều của phản lực'], 0,
+        'Chiều và độ lớn phải dựa vào phương trình cân bằng mới xác định được.', rc)
+      + makeMCQ('c4', 'Muốn tìm lực mà dầm tác dụng lên gối đỡ (vật gây liên kết), ta dùng:', ['Tiên đề 4 — lực tác dụng và phản tác dụng', 'Tiên đề 1', 'Tiên đề 3', 'Tiên đề 5'], 0,
+        'Lực dầm tác dụng lên gối = − phản lực gối tác dụng lên dầm (định luật 3 Newton).', rc)
+      + makeMCQ('c5', 'Liên kết dây mềm khác liên kết thanh lý tưởng ở chỗ:', ['Dây chỉ chịu kéo (liên kết một phía), thanh chịu cả kéo lẫn nén', 'Dây có 2 ẩn phản lực', 'Thanh chỉ chịu kéo', 'Không có gì khác nhau'], 0,
+        'Phản lực dây luôn hướng từ vật ra ngoài dọc dây; lực trong thanh có thể dương (kéo) hoặc âm (nén).', rc)
+  });
+  return h;
+}
+
+window.onload = function () {
+  runPage({ chapter: 'c1', id: 'C1-12-LienKet', progKey: 'chcs_prog_c1_12', code: '1.2' }, build);
+};
+</script>
+</body>
+</html>

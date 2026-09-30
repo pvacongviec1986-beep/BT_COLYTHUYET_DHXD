@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 1 — Mở Đầu, Khái Niệm & Hệ Tiên Đề</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="stylesheet" href="../assets/css/app.css?v=1">
+<script src="../config.js"></script>
+<script src="../assets/js/engine.js?v=1"></script>
+<script src="../assets/js/chapter.js?v=1"></script>
+</head>
+<body>
+<header class="hdr"><div class="hdr-in">
+  <a href="../index.html" class="back-btn"><i class="ti ti-arrow-left"></i> Trang chủ</a>
+  <div class="hdr-title"><h1>Chương 1 — Mở Đầu, Khái Niệm & Hệ Tiên Đề</h1><p id="hdr-sub">Cơ Học Cơ Sở 1 — Tĩnh Học</p></div>
+</div></header>
+<main>
+  <div class="hero">
+    <h2><i class="ti ti-atom" style="vertical-align:-3px;margin-right:8px"></i>Chương 1 — Mở Đầu, Khái Niệm & Hệ Tiên Đề</h2>
+    <p>Lực · Hệ lực · Hợp lực · 5 tiên đề tĩnh học · Liên kết & phản lực liên kết · Nguyên lý giải phóng liên kết</p>
+    <div class="hero-meta">
+      <div class="hero-chip"><i class="ti ti-book-2"></i> 2 bài tập</div>
+      <div class="hero-chip"><i class="ti ti-math-function"></i> Hình bình hành lực · Lamy · Hệ quả 3 lực</div>
+    </div>
+  </div>
+  <div class="sv-bar">
+    <i class="ti ti-id-badge-2"></i>
+    <div><div class="sv-name" id="sv-display">Đang tải...</div><div class="sv-sub">Số liệu tự sinh theo STT · <a href="../index.html">Đổi thông tin ở Trang chủ</a></div></div>
+    <div class="sv-num" id="sv-badge">–</div>
+  </div>
+  <div class="sec-lbl"><i class="ti ti-list-check"></i> Các bài tập</div>
+  <div class="grid" id="lesson-grid"></div>
+  <div class="prog-wrap">
+    <div class="prog-top"><span><i class="ti ti-target" style="vertical-align:-2px;margin-right:5px"></i>Tiến độ tổng Chương 1 (số câu đúng)</span><span id="total-prog-text">Chưa có dữ liệu</span></div>
+    <div class="prog-track"><div class="prog-fill" id="total-prog-fill" style="width:0%"></div></div>
+    <p style="font-size:11px;color:var(--muted);margin-top:8px">Tiến độ được lưu tự động trong trình duyệt khi bạn làm bài.</p>
+  </div>
+</main>
+<script>
+renderChapter('c1', [
+  { code: '1.1', href: '1.1_TIEN_DE.html', key: 'chcs_prog_c1_11', icon: 'atom', bg: '#E3F2FD', fg: '#1565C0',
+    title: 'Khái Niệm Cơ Bản & Hệ Tiên Đề', sub: 'Lực · Hệ lực tương đương · 5 tiên đề',
+    feats: [['help-circle', '8 câu trắc nghiệm khái niệm, tiên đề'], ['vector-triangle', 'Hình bình hành lực: R, góc β'], ['triangle', 'Hai dây treo (Lamy) · Thanh tựa (hệ quả 3 lực)']] },
+  { code: '1.2', href: '1.2_LIEN_KET.html', key: 'chcs_prog_c1_12', icon: 'link', bg: '#E8F5E9', fg: '#2E7D32',
+    title: 'Liên Kết & Phản Lực Liên Kết', sub: '8 loại liên kết phẳng · Giải phóng liên kết',
+    feats: [['123', 'Số ẩn phản lực của từng liên kết'], ['arrows-split', 'Phương, chiều phản lực'], ['category', 'Phân loại: tĩnh định / siêu tĩnh / không phù hợp']] }
+]);
+</script>
+</body>
+</html>

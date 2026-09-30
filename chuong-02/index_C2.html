@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 2 — Hệ Lực Phẳng & Cân Bằng Vật Rắn Phẳng</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="stylesheet" href="../assets/css/app.css?v=1">
+<script src="../config.js"></script>
+<script src="../assets/js/engine.js?v=1"></script>
+<script src="../assets/js/chapter.js?v=1"></script>
+</head>
+<body>
+<header class="hdr"><div class="hdr-in">
+  <a href="../index.html" class="back-btn"><i class="ti ti-arrow-left"></i> Trang chủ</a>
+  <div class="hdr-title"><h1>Chương 2 — Hệ Lực Phẳng & Cân Bằng Vật Rắn Phẳng</h1><p id="hdr-sub">Cơ Học Cơ Sở 1 — Tĩnh Học</p></div>
+</div></header>
+<main>
+  <div class="hero">
+    <h2><i class="ti ti-vector" style="vertical-align:-3px;margin-right:8px"></i>Chương 2 — Hệ Lực Phẳng & Cân Bằng Vật Rắn Phẳng</h2>
+    <p>Véctơ chính · Mômen chính · Thu gọn hệ lực · Dạng tối giản · Phương trình cân bằng · Bài toán kỹ thuật</p>
+    <div class="hero-meta">
+      <div class="hero-chip"><i class="ti ti-book-2"></i> 4 bài tập</div>
+      <div class="hero-chip"><i class="ti ti-file-text"></i> Phiếu BT số 1 & số 2</div>
+      <div class="hero-chip"><i class="ti ti-math-function"></i> Thu gọn · Phản lực · Vật lật</div>
+    </div>
+  </div>
+  <div class="sv-bar">
+    <i class="ti ti-id-badge-2"></i>
+    <div><div class="sv-name" id="sv-display">Đang tải...</div><div class="sv-sub">Số liệu tự sinh theo STT · <a href="../index.html">Đổi thông tin ở Trang chủ</a></div></div>
+    <div class="sv-num" id="sv-badge">–</div>
+  </div>
+  <div class="sec-lbl"><i class="ti ti-list-check"></i> Các bài tập</div>
+  <div class="grid" id="lesson-grid"></div>
+  <div class="prog-wrap">
+    <div class="prog-top"><span><i class="ti ti-target" style="vertical-align:-2px;margin-right:5px"></i>Tiến độ tổng Chương 2 (số câu đúng)</span><span id="total-prog-text">Chưa có dữ liệu</span></div>
+    <div class="prog-track"><div class="prog-fill" id="total-prog-fill" style="width:0%"></div></div>
+    <p style="font-size:11px;color:var(--muted);margin-top:8px">Tiến độ được lưu tự động trong trình duyệt khi bạn làm bài.</p>
+  </div>
+</main>
+<script>
+renderChapter('c2', [
+  { code: '2.1', href: '2.1_DONG_QUY.html', key: 'chcs_prog_c2_21', icon: 'arrows-maximize', bg: '#FFF3E0', fg: '#E65100',
+    title: 'Thu Gọn Hệ Lực Đồng Quy Phẳng', sub: 'Phiếu BT số 1 — phần A',
+    feats: [['calculator', "R'x, R'y, R, góc α của hợp lực"], ['angle', 'Đọc góc trên hình · lực theo độ dốc 3-4-5'], ['arrow-back-up', 'Bài ngược: tìm F để cân bằng / có hợp lực cho trước']] },
+  { code: '2.2', href: '2.2_THU_GON.html', key: 'chcs_prog_c2_22', icon: 'rotate-clockwise-2', bg: '#F3E5F5', fg: '#6A1B9A',
+    title: 'Ngẫu Lực & Thu Gọn Hệ Lực Phẳng', sub: 'Phiếu BT số 1 — phần B',
+    feats: [['grid-dots', 'Thu gọn về tâm O trên lưới ô vuông'], ['rotate', 'Mômen, hệ ngẫu lực, dời lực song song'], ['route', 'Dạng tối giản · đường tác dụng hợp lực']] },
+  { code: '2.3', href: '2.3_PHAN_LUC.html', key: 'chcs_prog_c2_23', icon: 'building-bridge-2', bg: '#E3F2FD', fg: '#1565C0',
+    title: 'Tính Phản Lực Liên Kết', sub: 'Phiếu BT số 2 — phần B · Bài toán 2',
+    feats: [['ruler-measure', 'Dầm đơn giản, đầu thừa, công-xôn'], ['wave-sine', 'Tải tập trung, phân bố đều/tam giác, ngẫu lực'], ['brain', 'Thanh chống CD · Khung gấp khúc']] },
+  { code: '2.4', href: '2.4_LUA_CHON_LK.html', key: 'chcs_prog_c2_24', icon: 'link', bg: '#E8F5E9', fg: '#2E7D32',
+    title: 'Lựa Chọn Liên Kết & Vật Lật', sub: 'Phiếu BT số 2 — phần A · Bài toán 1 & 3',
+    feats: [['photo', 'Chọn phương án liên kết tĩnh định (theo hình)'], ['crane', 'Cần trục: góc nghiêng lớn nhất'], ['wall', 'Tường chắn gió · tấm ván đầu thừa']] }
+]);
+</script>
+</body>
+</html>
